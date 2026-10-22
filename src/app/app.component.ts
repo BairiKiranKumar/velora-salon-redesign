@@ -34,6 +34,7 @@ import { BookingService } from './core/services/booking.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  readonly title = 'VELORA Studio';
   readonly bookingService = inject(BookingService);
 
   closeDrawer(): void {

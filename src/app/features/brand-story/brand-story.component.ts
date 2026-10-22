@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, OnDestroy, ElementRef, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import gsap from 'gsap';
 
 interface CraftPillar {
   number: string;
@@ -14,7 +15,11 @@ interface CraftPillar {
   templateUrl: './brand-story.component.html',
   styleUrls: ['./brand-story.component.scss']
 })
-export class BrandStoryComponent {
+export class BrandStoryComponent implements AfterViewInit, OnDestroy {
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly host = inject(ElementRef);
+  private ctx?: gsap.Context;
+
   readonly pillars: CraftPillar[] = [
     {
       number: '01',
@@ -37,4 +42,24 @@ export class BrandStoryComponent {
       description: 'Warm herbal teas, gentle acoustic soundscapes, and private consultation bays designed so you can unwind completely.'
     }
   ];
+
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    this.ctx = gsap.context(() => {
+      gsap.from('.pillar-item', {
+        opacity: 0,
+        y: 25,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out',
+        delay: 0.1
+      });
+    }, this.host.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.ctx?.revert();
+  }
 }
