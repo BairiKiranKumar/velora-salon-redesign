@@ -1,13 +1,13 @@
-<section id="collections" class="section-spacing collections-section" aria-label="Curated Service Collections">
+<section id="collections" class="section-spacing collections-section" aria-label="Salon Services Menu">
   <div class="container-velora">
     <!-- Section Header -->
     <div class="section-header">
-      <span class="section-eyebrow">Haute Menu &bull; Curated Services</span>
+      <span class="section-eyebrow">Hair &amp; Beauty &bull; Bhubaneswar</span>
       <h2 class="section-title">
-        The Atelier <span class="gold-italic">Collections</span>
+        Personalised <span class="gold-italic">Services</span>
       </h2>
       <p class="section-subtitle">
-        Curated rituals blending centuries-old European craftsmanship with contemporary clinical dermatology. Explore our signature treatments and reserve your appointment.
+        Tailored hair sculpting, balayage, gentle skin therapies, and authentic Odisha bridal styling in Old Town.
       </p>
     </div>
 
@@ -21,7 +21,7 @@
         </svg>
         <input 
           type="search" 
-          placeholder="Search rituals (e.g., Balayage, 24K Gold, Keratin)..."
+          placeholder="Search by service (e.g. Haircut, Beard, Balayage, Facial)..."
           [ngModel]="searchQuery()"
           (ngModelChange)="searchQuery.set($event)"
           aria-label="Search through salon services"
@@ -49,32 +49,36 @@
       </div>
     </div>
 
-    <!-- Results Count Indicator -->
+    <!-- Results Status Strip -->
     <div class="results-meta">
       <span class="results-count">
-        Showing <strong>{{ filteredServices().length }}</strong> bespoke rituals
+        @if (isSignatureOnly()) {
+          Showing <strong>6 Signature Services</strong>
+        } @else {
+          Showing <strong>{{ displayedServices().length }}</strong> services
+        }
       </span>
       @if (bookingService.serviceCount() > 0) {
         <span class="cart-indicator">
           <span class="pulse-indicator"></span>
-          {{ bookingService.serviceCount() }} selected in your ritual tray
+          {{ bookingService.serviceCount() }} selected in your appointment
         </span>
       }
     </div>
 
     <!-- Services Grid -->
     <div class="services-grid">
-      @for (service of filteredServices(); track service.id) {
+      @for (service of displayedServices(); track service.id) {
         <article 
           class="service-card glass-card" 
           [class.selected]="isServiceSelected(service.id)">
           <!-- Top Badges -->
           <div class="service-badges">
             @if (service.isSignature) {
-              <span class="gold-badge">Atelier Signature</span>
+              <span class="gold-badge">Signature Service</span>
             }
             @if (service.isPopular) {
-              <span class="popular-badge">Coveted</span>
+              <span class="popular-badge">Popular</span>
             }
             <span class="duration-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="clock-icon" aria-hidden="true">
@@ -126,10 +130,10 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-check-icon" aria-hidden="true">
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
-                <span>Selected for Ritual</span>
+                <span>Selected</span>
               } @else {
                 <span class="plus-icon">+</span>
-                <span>Select for Ritual</span>
+                <span>Select Service</span>
               }
             </button>
 
@@ -151,12 +155,8 @@
         </article>
       } @empty {
         <div class="empty-state glass-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" class="empty-icon" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <h3 class="empty-title">No matching rituals found</h3>
-          <p class="empty-text">Try adjusting your search criteria or explore our complete collections.</p>
+          <h3 class="empty-title">No matching services found</h3>
+          <p class="empty-text">Try adjusting your search criteria or explore our complete service categories.</p>
           <button type="button" class="btn-outline-gold" (click)="searchQuery.set(''); selectedCategory.set('all')">
             Reset Filters
           </button>
@@ -164,12 +164,34 @@
       }
     </div>
 
+    <!-- Toggle Full Price List / Signature Only Banner -->
+    @if (selectedCategory() === 'all' && !searchQuery()) {
+      <div class="price-list-toggle-banner">
+        <button 
+          type="button" 
+          class="btn-outline-gold toggle-all-services-btn" 
+          (click)="toggleShowAll()">
+          @if (isSignatureOnly()) {
+            <span>View Complete Price List (21 Services)</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-down" aria-hidden="true">
+              <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+          } @else {
+            <span>Show 6 Signature Services Only</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-up" aria-hidden="true">
+              <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+          }
+        </button>
+      </div>
+    }
+
     <!-- Floating Selection Summary Tray -->
     @if (bookingService.serviceCount() > 0) {
       <aside class="floating-selection-tray glass-card" aria-label="Selected appointment summary">
         <div class="tray-inner">
           <div class="tray-summary">
-            <div class="tray-badge">{{ bookingService.serviceCount() }} Rituals Selected</div>
+            <div class="tray-badge">{{ bookingService.serviceCount() }} Services Selected</div>
             <div class="tray-financials">
               <span class="tray-price">₹{{ bookingService.totalPrice() | number }}</span>
               <span class="tray-divider">&bull;</span>
@@ -178,11 +200,11 @@
           </div>
 
           <div class="tray-actions">
-            <button type="button" class="btn-clear-tray" (click)="bookingService.clearServices()" aria-label="Clear selected rituals">
+            <button type="button" class="btn-clear-tray" (click)="bookingService.clearServices()" aria-label="Clear selected services">
               Clear All
             </button>
             <button type="button" class="btn-gold tray-proceed-btn" (click)="openBookingDrawer()">
-              <span>Choose Date &amp; Time</span>
+              <span>Choose Date &amp; Stylist</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>

@@ -66,6 +66,23 @@
   color: var(--velora-gold-light);
 }
 
+.concept-corner-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  background: rgba(26, 24, 21, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--velora-brass);
+}
+
 .stylist-content {
   padding: 1.5rem;
   display: flex;

@@ -1,14 +1,17 @@
-<section id="stylists" class="section-spacing stylists-section" aria-label="Master Resident Stylists">
+<section id="stylists" class="section-spacing stylists-section" aria-label="Our Salon Team">
   <div class="container-velora">
     <!-- Section Header -->
     <div class="section-header">
-      <span class="section-eyebrow">Artisans &bull; Master Dossier</span>
+      <span class="section-eyebrow">Craft &amp; Care &bull; Bhubaneswar</span>
       <h2 class="section-title">
-        The Resident <span class="gold-italic">Artisans</span>
+        Our <span class="gold-italic">Team</span>
       </h2>
       <p class="section-subtitle">
-        Our sanctuary is home to visionary colourists, precision sculptors, and certified dermatological aestheticians dedicated to personalized excellence.
+        Experienced hair stylists, master barber, traditional bridal artist, and skin therapist in Old Town.
       </p>
+      <div style="margin-top: 1rem;">
+        <span class="concept-tag dark-bg">Concept Stylist Profiles &bull; Portfolio Demonstration</span>
+      </div>
     </div>
 
     <!-- Stylists Grid -->
@@ -23,20 +26,15 @@
               class="stylist-photo"
               loading="lazy">
             <div class="stylist-exp-badge">
-              <span>{{ stylist.experienceYears }}+ Years Experience</span>
+              <span>{{ stylist.experienceYears }} Years Craft Experience</span>
+            </div>
+            <div class="concept-corner-tag">
+              <span>Concept Profile</span>
             </div>
           </div>
 
           <!-- Content Details -->
           <div class="stylist-content">
-            <div class="stylist-meta">
-              <span class="stylist-rating">
-                <span class="gold-star" aria-hidden="true">★</span>
-                <strong>{{ stylist.rating }}</strong>
-                <span class="review-count">({{ stylist.reviewCount }} reviews)</span>
-              </span>
-            </div>
-
             <h3 class="stylist-name">{{ stylist.name }}</h3>
             <span class="stylist-title">{{ stylist.title }}</span>
 
@@ -44,7 +42,7 @@
 
             <!-- Signature Treatment Pill -->
             <div class="signature-tag">
-              <span class="tag-label">Signature Ritual:</span>
+              <span class="tag-label">Signature Service:</span>
               <span class="tag-value">{{ stylist.signatureTreatment }}</span>
             </div>
 
@@ -60,8 +58,8 @@
               type="button" 
               class="btn-outline-gold book-stylist-btn" 
               (click)="bookWithStylist(stylist)"
-              [attr.aria-label]="'Request appointment with ' + stylist.name">
-              <span>Request Appointment</span>
+              [attr.aria-label]="'Book appointment with ' + stylist.name">
+              <span>Book with {{ stylist.name.split(' ')[0] }}</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-arrow" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>

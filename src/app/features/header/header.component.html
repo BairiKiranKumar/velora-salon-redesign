@@ -23,38 +23,40 @@
       </div>
     </a>
 
-    <!-- Desktop Navigation Links -->
+    <!-- Desktop Navigation Links (5 Focused Items) -->
     <nav class="desktop-nav" aria-label="Primary Navigation">
       <ul class="nav-list">
-        <li><a href="#story" class="nav-link">Sanctuary</a></li>
-        <li><a href="#collections" class="nav-link">Collections</a></li>
-        <li><a href="#stylists" class="nav-link">Artisans</a></li>
+        <li><a href="#collections" class="nav-link">Services</a></li>
+        <li><a href="#stylists" class="nav-link">Our Team</a></li>
         <li><a href="#transformations" class="nav-link">Transformations</a></li>
-        <li><a href="#packages" class="nav-link">Memberships</a></li>
-        <li><a href="#reviews" class="nav-link">Dossier</a></li>
-        <li><a href="#concierge" class="nav-link">Concierge</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="#concierge" class="nav-link">Visit Us</a></li>
       </ul>
     </nav>
 
-    <!-- Header Actions (Direct Phone + Booking Drawer CTA) -->
+    <!-- Header Actions (Compact WhatsApp & Booking CTA) -->
     <div class="header-actions">
-      <a href="tel:+919874563210" class="phone-link" aria-label="Call concierge at +91 98745 63210">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="icon-phone" aria-hidden="true">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      <!-- Direct WhatsApp Action Button -->
+      <a 
+        href="https://wa.me/919437000000?text=Hello%20VELORA%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20an%20appointment" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="header-wa-btn" 
+        title="Chat with Concierge on WhatsApp"
+        aria-label="Chat with Concierge on WhatsApp">
+        <svg viewBox="0 0 24 24" class="wa-icon" aria-hidden="true">
+          <path fill="currentColor" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.16 8.16 0 0 1 2.4 5.83c0 4.54-3.69 8.24-8.24 8.24-1.47 0-2.92-.4-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.25-4.36c0-4.54 3.69-8.24 8.24-8.24m4.52 11.66c-.19.53-1.09 1.04-1.52 1.08-.41.05-.93.07-2.69-.66-2.25-.93-3.7-3.23-3.81-3.38-.11-.15-.91-1.21-.91-2.31 0-1.1.58-1.64.78-1.87.2-.22.45-.28.6-.28.15 0 .3 0 .43.01.14.01.33-.05.51.39.2.48.67 1.64.73 1.76.06.12.1.26.02.42-.08.16-.12.26-.24.4-.12.14-.25.31-.36.42-.12.12-.24.25-.1.5.14.24.62 1.02 1.33 1.65.91.81 1.68 1.06 1.92 1.18.24.12.38.1.52-.06.14-.16.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.13 1.11"/>
         </svg>
-        <span class="phone-text">+91 98745 63210</span>
+        <span class="wa-text">WhatsApp</span>
       </a>
 
-      <!-- Booking Cart Trigger Button with Signals Counter Badge -->
+      <!-- Compact Booking Button -->
       <button 
         type="button" 
         class="btn-gold nav-booking-btn" 
         (click)="openBookingDrawer()"
-        aria-label="Open booking drawer">
-        <span>Reserve Ritual</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-arrow" aria-hidden="true">
-          <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        aria-label="Book Appointment">
+        <span>Book Appointment</span>
         @if (bookingService.serviceCount() > 0) {
           <span class="service-counter-badge" [attr.aria-label]="bookingService.serviceCount() + ' services selected'">
             {{ bookingService.serviceCount() }}
@@ -82,24 +84,26 @@
     <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
       <div class="container-velora mobile-nav-inner">
         <ul class="mobile-nav-list">
-          <li><a href="#story" class="mobile-nav-link" (click)="closeMobileMenu()">Sanctuary</a></li>
-          <li><a href="#collections" class="mobile-nav-link" (click)="closeMobileMenu()">Collections</a></li>
-          <li><a href="#stylists" class="mobile-nav-link" (click)="closeMobileMenu()">Artisans</a></li>
+          <li><a href="#collections" class="mobile-nav-link" (click)="closeMobileMenu()">Services</a></li>
+          <li><a href="#stylists" class="mobile-nav-link" (click)="closeMobileMenu()">Our Team</a></li>
           <li><a href="#transformations" class="mobile-nav-link" (click)="closeMobileMenu()">Transformations</a></li>
-          <li><a href="#packages" class="mobile-nav-link" (click)="closeMobileMenu()">Memberships</a></li>
-          <li><a href="#reviews" class="mobile-nav-link" (click)="closeMobileMenu()">Dossier</a></li>
-          <li><a href="#concierge" class="mobile-nav-link" (click)="closeMobileMenu()">Concierge</a></li>
+          <li><a href="#reviews" class="mobile-nav-link" (click)="closeMobileMenu()">Reviews</a></li>
+          <li><a href="#concierge" class="mobile-nav-link" (click)="closeMobileMenu()">Visit Us</a></li>
         </ul>
 
         <div class="mobile-drawer-footer">
-          <button type="button" class="btn-gold w-full" (click)="openBookingDrawer()">
-            <span>Reserve Ritual</span>
+          <button type="button" class="btn-gold w-full" (click)="openBookingDrawer(); closeMobileMenu()">
+            <span>Book Appointment</span>
             @if (bookingService.serviceCount() > 0) {
               <span class="service-counter-badge">{{ bookingService.serviceCount() }}</span>
             }
           </button>
-          <a href="tel:+919874563210" class="mobile-phone-link">
-            Direct Concierge: +91 98745 63210
+          <a 
+            href="https://wa.me/919437000000?text=Hello%20VELORA%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20an%20appointment" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="mobile-wa-link">
+            Chat on WhatsApp: +91 94370 00000
           </a>
         </div>
       </div>

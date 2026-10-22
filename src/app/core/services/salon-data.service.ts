@@ -16,482 +16,485 @@ export class SalonDataService {
   readonly categories: ServiceCategory[] = [
     {
       id: 'all',
-      name: 'All Collections',
-      tagline: 'Complete portfolio of bespoke atelier rituals',
+      name: 'All Services',
+      tagline: 'Personalised hair, skin and bridal care in Bhubaneswar',
       icon: 'sparkles'
     },
     {
-      id: 'coiffure',
-      name: 'Haute Coiffure',
-      tagline: 'Architectural precision haircuts & sculpting',
+      id: 'hair',
+      name: 'Hair & Styling',
+      tagline: 'Precision haircuts, bouncy blowouts & restorative care',
       icon: 'scissors'
     },
     {
       id: 'color',
-      name: 'Couture Colour',
-      tagline: 'French balayage, glossing & multi-dimensional light',
+      name: 'Balayage & Colour',
+      tagline: 'French balayage, glossing & root touch-ups for dark hair',
       icon: 'palette'
     },
     {
-      id: 'aesthetics',
-      name: 'Derma Aesthetics',
-      tagline: 'Clinical hydration & 24K cellular renewal',
+      id: 'skin',
+      name: 'Skin & Aesthetics',
+      tagline: 'Hydra-infusion & botanical brightening facials',
       icon: 'wand'
     },
     {
-      id: 'rituals',
-      name: 'Restorative Spa',
-      tagline: 'Holistic basalt massage & kinetic stress release',
-      icon: 'leaf'
+      id: 'bridal',
+      name: 'Bridal & Occasion',
+      tagline: 'Odisha bridal sarees, temple jewellery styling & HD makeup',
+      icon: 'crown'
     },
     {
-      id: 'hands-feet',
-      name: 'Hand & Foot Couture',
-      tagline: 'Russian precision manicures & marine pedicures',
+      id: 'men',
+      name: 'Men’s Grooming',
+      tagline: 'Bespoke cuts, beard architecture & hot towel therapy',
       icon: 'gem'
     },
     {
-      id: 'bridal',
-      name: 'Bridal Atelier',
-      tagline: 'High-definition couture glamour & royal styling',
-      icon: 'crown'
+      id: 'spa',
+      name: 'Restorative Spa',
+      tagline: 'Warm basalt stones & botanical stress relief',
+      icon: 'leaf'
     }
   ];
 
   readonly services: SalonService[] = [
-    // --- Haute Coiffure ---
+    // --- 1. SIGNATURE SERVICES (Featured first on page) ---
     {
-      id: 'hc-01',
-      name: 'Atelier Signature Scissor Sculpt',
-      category: 'coiffure',
-      price: 1800,
-      durationMinutes: 60,
-      shortDescription: 'Custom architectural haircut tailored to facial geometry and natural texture.',
-      detailedDescription: 'Includes botanical scalp consultation, cleansing wash with French lavender essences, blow-dry finish, and bespoke styling tips.',
-      benefits: ['Bespoke face-framing symmetry', 'Scalp detox wash included', 'Long-lasting texture retention'],
-      isSignature: true,
-      isPopular: true
-    },
-    {
-      id: 'hc-02',
-      name: 'Velvet Silk Blowout & Thermal Glaze',
-      category: 'coiffure',
+      id: 'sig-01',
+      name: 'Signature Haircut & Styling',
+      category: 'hair',
       price: 1200,
-      durationMinutes: 45,
-      shortDescription: 'High-gloss volume styling with Italian argan seal and anti-humidity shield.',
-      detailedDescription: 'Designed for gala events and long-lasting glass-hair brilliance without weighing down strands.',
-      benefits: ['72-hour frizz protection', 'Diamond light reflection', 'Heat defense infusion'],
-      isPopular: true
-    },
-    {
-      id: 'hc-03',
-      name: 'Botanical Keratin Infusion & Rebuild',
-      category: 'coiffure',
-      price: 4500,
-      durationMinutes: 120,
-      shortDescription: 'Deep protein micro-molecular bonding treatment to restore chemically stressed hair.',
-      detailedDescription: 'Formaldehyde-free organic amino acid formula restores natural elasticity, shine, and silkiness.',
-      benefits: ['Zero harsh chemicals', 'Repairs split cortical bonds', 'Lasts up to 12 weeks'],
-      isSignature: true
-    },
-    {
-      id: 'hc-04',
-      name: 'Gentlemen Bespoke Cut & Beard Architecture',
-      category: 'coiffure',
-      price: 1100,
-      durationMinutes: 45,
-      shortDescription: 'Scissor-over-comb master cut with hot towel beard lineation and oil massage.',
-      benefits: ['Razor-sharp contours', 'Organic cedarwood beard nourishment', 'Invigorating scalp wash'],
-      isPopular: true
-    },
-
-    // --- Couture Colour ---
-    {
-      id: 'cc-01',
-      name: 'Parisian Sun-Kissed Balayage',
-      category: 'color',
-      price: 5200,
-      durationMinutes: 180,
-      shortDescription: 'Freehand French surface painting for seamless, lived-in multi-tonal radiance.',
-      detailedDescription: 'Handcrafted tonal blending calibrated to skin undertones with bond-protecting oligo-elements.',
-      benefits: ['Zero harsh regrowth lines', 'Personalized tone calibration', 'Includes gloss toner and blow-dry'],
+      durationMinutes: 60,
+      shortDescription: 'Personalised scissor cut calibrated to your face shape, natural hair texture, and daily styling needs.',
+      detailedDescription: 'Includes an unhurried consultation, relaxing botanical scalp wash, precision styling, and practical tips for Bhubaneswar weather.',
+      benefits: ['Face-framing shape calibrated to your texture', 'Invigorating botanical scalp wash included', 'Blowout styling and practical home-care advice'],
       isSignature: true,
       isPopular: true
     },
     {
-      id: 'cc-02',
-      name: 'Luminous Acidic French Glossing',
+      id: 'sig-02',
+      name: 'Men’s Haircut & Beard Styling',
+      category: 'men',
+      price: 750,
+      durationMinutes: 45,
+      shortDescription: 'Scissor-over-comb master cut with clean beard lineation, hot towel wrap, and nourishing beard oil.',
+      detailedDescription: 'Crisp scissor work, tidy sideburn tapers, and relaxing hot towel care with organic cedarwood and argan oil.',
+      benefits: ['Razor-clean contours & beard detailing', 'Relaxing warm towel service', 'Scalp detox wash included'],
+      isSignature: true,
+      isPopular: true
+    },
+    {
+      id: 'sig-03',
+      name: 'French Balayage & Gloss',
       category: 'color',
+      price: 4200,
+      durationMinutes: 180,
+      shortDescription: 'Freehand dimensional surface painting creating seamless, sunlit warmth tailored to dark Indian hair.',
+      detailedDescription: 'Gradual, natural-looking dimension without harsh regrowth lines, finished with a luminous pH-balancing gloss glaze.',
+      benefits: ['Natural seamless grow-out with no harsh lines', 'Calibrated to your skin undertone', 'Includes conditioning gloss & blowout'],
+      isSignature: true,
+      isPopular: true
+    },
+    {
+      id: 'sig-04',
+      name: 'Signature Bridal Makeup & Hair',
+      category: 'bridal',
+      price: 14500,
+      durationMinutes: 240,
+      shortDescription: 'Complete traditional or contemporary bridal styling: Odisha handloom saree draping, temple jewellery setting, fresh gajra, and tear-resistant HD makeup.',
+      detailedDescription: 'Crafted for timeless photography and celebration wear. Includes private suite access, personalized jewellery pinning, and touch-up kit.',
+      benefits: ['Camera-ready HD finish tested under warm lighting', 'Authentic Odisha saree draping & jewellery pinning', 'Private bridal dressing suite'],
+      isSignature: true,
+      isPopular: true
+    },
+    {
+      id: 'sig-05',
+      name: 'Hydra-Infusion Glow Facial',
+      category: 'skin',
       price: 2400,
       durationMinutes: 60,
-      shortDescription: 'Translucent conditioning glaze providing mirrorshine color refreshment.',
-      benefits: ['pH-balancing technology', 'Instant reflective gloss', 'Neutralizes unwanted brassiness'],
-      isPopular: true
-    },
-    {
-      id: 'cc-03',
-      name: 'Ammonia-Free Velvet Root Restoration',
-      category: 'color',
-      price: 2200,
-      durationMinutes: 75,
-      shortDescription: '100% gentle grey coverage with organic botanical oils and deep scalp comfort.',
-      benefits: ['Zero scalp irritation or ammonia odor', 'Velvet pigment saturation', 'Botanical oil barrier']
-    },
-    {
-      id: 'cc-04',
-      name: 'Avant-Garde Dimension & Foil Highlights',
-      category: 'color',
-      price: 4800,
-      durationMinutes: 150,
-      shortDescription: 'Micro-weave foils creating shimmering contrast, depth, and illumination.',
-      benefits: ['Precision placement', 'Custom dual-tone dimension', 'Bond-building treatment included']
-    },
-
-    // --- Derma Aesthetics ---
-    {
-      id: 'da-01',
-      name: '24K Aurum Cellular Lift Facial',
-      category: 'aesthetics',
-      price: 3800,
-      durationMinutes: 75,
-      shortDescription: 'Precious colloidal gold leaf and peptide infusion stimulating collagen synthesis.',
-      detailedDescription: 'Includes sonic cleansing, mild enzymatic peel, lymphatic drainage roller massage, and 24K gold membrane seal.',
-      benefits: ['Immediate contour firming', 'Luminous lit-from-within glow', 'Cellular oxidation defense'],
+      shortDescription: 'Painless vortex pore extraction combined with hyaluronic hydration and botanical calming serum.',
+      detailedDescription: 'Gently clears environmental impurities and pollution residue while infusing deep moisture suited to Bhubaneswar humidity.',
+      benefits: ['Cleanses congested pores without irritation', 'Restores natural moisture barrier', 'Ideal for Bhubaneswar humidity and dust'],
       isSignature: true,
       isPopular: true
     },
     {
-      id: 'da-02',
-      name: 'Hydra-Vortex Micro-Infusion Treatment',
-      category: 'aesthetics',
-      price: 2900,
-      durationMinutes: 60,
-      shortDescription: 'Painless vortex pore extraction combined with multi-weight hyaluronic acid hydration.',
-      benefits: ['Unclogs congested pores without redness', 'Plumps fine dehydration lines', 'Zero downtime'],
-      isPopular: true
-    },
-    {
-      id: 'da-03',
-      name: 'Pure O3+ Derma Clarifying Detox',
-      category: 'aesthetics',
+      id: 'sig-06',
+      name: 'Restorative Botanical Spa & Scalp Therapy',
+      category: 'spa',
       price: 2200,
       durationMinutes: 60,
-      shortDescription: 'Medical-grade oxygenated purifying ritual for blemish-prone and stressed skin.',
-      benefits: ['Deep bacterial neutralization', 'Calms inflammation and redness', 'Balances sebum production']
+      shortDescription: 'Warm herbal hair mask, neck and shoulder acupressure, and heated stone massage melting daily fatigue.',
+      detailedDescription: 'A quiet, sensory ritual using pure sesame, neem, and sandalwood extracts to replenish roots and calm stress.',
+      benefits: ['Soothes scalp tension and dryness', 'Myofascial shoulder and neck relief', 'Aromatherapeutic warm botanical oils'],
+      isSignature: true,
+      isPopular: true
     },
+
+    // --- 2. ADDITIONAL HAIR SERVICES ---
     {
-      id: 'da-04',
-      name: 'Radiance Botanical D-Tan & Brightening Peel',
-      category: 'aesthetics',
-      price: 1600,
+      id: 'hr-02',
+      name: 'Bouncy Velvet Blowout',
+      category: 'hair',
+      price: 850,
       durationMinutes: 45,
-      shortDescription: 'Gentle fruit enzyme and milk protein blend reversing sun damage and hyperpigmentation.',
-      benefits: ['Evening skin tone', 'Removes dead cellular debris', 'Gentle on sensitive Indian skin']
-    },
-
-    // --- Restorative Spa ---
-    {
-      id: 'rs-01',
-      name: 'Volcanic Basalt Hot Stone Equilibrium',
-      category: 'rituals',
-      price: 3200,
-      durationMinutes: 75,
-      shortDescription: 'Heated volcanic stones glide over energetic meridians melting chronic muscular tension.',
-      detailedDescription: 'Infused with warm sandalwood and ylang-ylang organic oils to soothe nervous system fatigue.',
-      benefits: ['Deep myofascial release', 'Promotes sound sleep cycles', 'Improves lymphatic circulation'],
-      isSignature: true,
+      shortDescription: 'High-gloss volume styling with anti-humidity shield for festive gatherings or events.',
+      benefits: ['Frizz control in humid air', 'Lightweight movement and shine', 'Heat defense infusion'],
       isPopular: true
     },
     {
-      id: 'rs-02',
-      name: 'Aroma-Botanique Stress Relief Massage',
-      category: 'rituals',
-      price: 2600,
-      durationMinutes: 60,
-      shortDescription: 'Custom pressure Swedish strokes tailored to neck, shoulders, and lower lumbar stiffness.',
-      benefits: ['Releases posture strain', 'Relieves mental exhaustion', 'Pure organic essential oils']
+      id: 'hr-03',
+      name: 'Botanical Keratin Rebuild',
+      category: 'hair',
+      price: 3800,
+      durationMinutes: 120,
+      shortDescription: 'Gentle formaldehyde-free amino acid smoothing that softens unruly frizz while keeping natural body.',
+      benefits: ['Zero harsh formaldehyde chemicals', 'Reduces daily styling time by half', 'Lasts up to 10 weeks']
     },
     {
-      id: 'rs-03',
-      name: 'Detoxifying Herbal Body Scrub & Cocoon',
-      category: 'rituals',
-      price: 2800,
-      durationMinutes: 60,
-      shortDescription: 'Himalayan pink salt crystals and crushed rose petals exfoliate and renew dry skin.',
-      benefits: ['Silky baby-soft epidermis', 'Flushes stagnant fluid', 'Aromatherapeutic serenity']
+      id: 'hr-04',
+      name: 'Deep Scalp Detox & Exfoliation',
+      category: 'hair',
+      price: 1100,
+      durationMinutes: 40,
+      shortDescription: 'Tea tree and rosemary clay scrub to unclog hair follicles and balance oily scalp conditions.',
+      benefits: ['Removes product build-up', 'Cooling menthol sensation', 'Stimulates healthy follicle growth']
     },
 
-    // --- Hand & Foot Couture ---
+    // --- 3. COLOUR SERVICES ---
     {
-      id: 'hf-01',
-      name: 'Russian Couture Dry Manicure & Gel Glaze',
-      category: 'hands-feet',
+      id: 'cl-02',
+      name: 'Luminous Hair Glossing',
+      category: 'color',
+      price: 1800,
+      durationMinutes: 45,
+      shortDescription: 'Translucent conditioning glaze that revives faded color and adds high reflective shine.',
+      benefits: ['Ammonia-free shine boost', 'Neutralizes brassy copper tones', 'Fast 45-minute treatment']
+    },
+    {
+      id: 'cl-03',
+      name: 'Gentle Grey Coverage & Root Touch-Up',
+      category: 'color',
+      price: 1600,
+      durationMinutes: 60,
+      shortDescription: 'Complete grey coverage with botanical oils and gentle scalp protection.',
+      benefits: ['No burning or chemical odor', 'Even seamless root matching', 'Scalp barrier shield included']
+    },
+    {
+      id: 'cl-04',
+      name: 'Foil Dimension Highlights',
+      category: 'color',
+      price: 3600,
+      durationMinutes: 150,
+      shortDescription: 'Fine micro-foils placing soft ribbons of caramel or hazelnut through top and crown layers.',
+      benefits: ['Custom placement to frame face', 'Blended soft transition', 'Bond protector included']
+    },
+
+    // --- 4. SKIN & AESTHETICS ---
+    {
+      id: 'sk-02',
+      name: 'Radiance Botanical D-Tan & Enzyme Peel',
+      category: 'skin',
       price: 1400,
-      durationMinutes: 60,
-      shortDescription: 'Micro-precision electric file cuticle detailing with chip-resistant vegan gel polish.',
-      benefits: ['Immaculate 3+ week durability', 'Safe, sterile cuticle alignment', 'High-shine diamond topcoat'],
-      isSignature: true,
-      isPopular: true
+      durationMinutes: 45,
+      shortDescription: 'Papaya and lactic fruit enzyme mask reversing sun tanning and environmental dullness.',
+      benefits: ['Restores natural even skin tone', 'Removes dead skin without abrasive scrubbing', 'Gentle on sensitive Indian skin']
     },
     {
-      id: 'hf-02',
-      name: 'Marine Collagen Velvet Spa Pedicure',
-      category: 'hands-feet',
+      id: 'sk-03',
+      name: 'Clarifying Deep Pore Cleanse',
+      category: 'skin',
       price: 1800,
       durationMinutes: 60,
-      shortDescription: 'Dead sea mineral soak, callus smoothing, seaweed foot mask, and acupressure massage.',
-      benefits: ['Deep heel cracking repair', 'Eases foot fatigue', 'Softens hardened skin tissue'],
-      isPopular: true
+      shortDescription: 'Targeted care for blemish-prone skin: steam softening, gentle extractions, and tea-tree pack.',
+      benefits: ['Calms redness and active congestion', 'Balances excess surface oil', 'Purifying antibacterial finish']
     },
     {
-      id: 'hf-03',
-      name: 'Warm Botanical Paraffin Immersion (Add-on)',
-      category: 'hands-feet',
-      price: 700,
-      durationMinutes: 25,
-      shortDescription: 'Therapeutic warm wax bath infused with peach kernel oil for intense skin nourishment.',
-      benefits: ['Immediate soothing for dry hands/feet', 'Soothes joint stiffness', 'Velvety texture']
+      id: 'sk-04',
+      name: 'Golden Radiance Occasion Facial',
+      category: 'skin',
+      price: 3200,
+      durationMinutes: 75,
+      shortDescription: 'Kunkumadi oil and botanical extract facial giving instant, photographic glow for celebrations.',
+      benefits: ['Deep nourishment with ayurvedic oils', 'Instant dewy glow before weddings/events', 'Relaxing lymphatic face roll']
     },
 
-    // --- Bridal Atelier ---
+    // --- 5. MEN’S GROOMING ---
     {
-      id: 'br-01',
-      name: 'The Empress Bespoke Bridal Masterpiece',
-      category: 'bridal',
-      price: 18500,
-      durationMinutes: 240,
-      shortDescription: 'The pinnacle bridal experience with Master Stylist Ari & team. Complete couture artistry.',
-      detailedDescription: 'Includes HD airbrush makeup, haute bridal hair sculpting with jewelry placement, pre-event skin prep ritual, and touch-up luxury kit.',
-      benefits: ['18-hour waterproof tear-resistant wear', 'Flawless camera and 4K video finish', 'Private bridal dressing suite'],
-      isSignature: true,
-      isPopular: true
+      id: 'mn-02',
+      name: 'Executive Scissor Cut & Wash',
+      category: 'men',
+      price: 500,
+      durationMinutes: 30,
+      shortDescription: 'Classic haircut tailored to your natural growth pattern, finished with a cooling shampoo wash.',
+      benefits: ['Clean neckline and side contours', 'Quick efficient service', 'Styling clay finish']
     },
+    {
+      id: 'mn-03',
+      name: 'Royal Hot Towel Beard Trim',
+      category: 'men',
+      price: 350,
+      durationMinutes: 25,
+      shortDescription: 'Beard shaping, mustache trim, two warm eucalyptus towels, and hydrating post-shave balm.',
+      benefits: ['Prevents ingrown hairs', 'Softens coarse beard hair', 'Relaxing warmth']
+    },
+
+    // --- 6. RESTORATIVE SPA & NAIL CARE ---
+    {
+      id: 'sp-02',
+      name: 'Volcanic Basalt Hot Stone Back Massage',
+      category: 'spa',
+      price: 2400,
+      durationMinutes: 60,
+      shortDescription: 'Smooth heated basalt stones glide across shoulders, upper back, and lumbar to dissolve tightness.',
+      benefits: ['Melt muscular stiffness', 'Promotes sound sleep', 'Warm herbal massage oil']
+    },
+    {
+      id: 'sp-03',
+      name: 'Classic Spa Pedicure with Callus Care',
+      category: 'spa',
+      price: 950,
+      durationMinutes: 50,
+      shortDescription: 'Warm salt soak, gentle heel smoothing, cooling peppermint scrub, and light foot massage.',
+      benefits: ['Relieves foot fatigue', 'Softens cracked heels', 'Neat cuticle trimming']
+    },
+    {
+      id: 'sp-04',
+      name: 'Precision Manicure & Nail Care',
+      category: 'spa',
+      price: 750,
+      durationMinutes: 40,
+      shortDescription: 'Nail shaping, gentle cuticle care, hand exfoliation, and natural buffing or polish.',
+      benefits: ['Clean, polished nail appearance', 'Nourishing almond cuticle oil', 'Relaxing hand massage']
+    },
+
+    // --- 7. BRIDAL CARE ---
     {
       id: 'br-02',
-      name: 'Pre-Bridal Glow Symphony (2-Day Ritual)',
+      name: 'Pre-Bridal Head-to-Toe Prep (Full Day)',
       category: 'bridal',
-      price: 12000,
-      durationMinutes: 180,
-      shortDescription: 'Full body polishing, 24K cellular facial, hair keratin glaze, and luxury nail couture.',
-      benefits: ['Complete head-to-toe readiness', 'Conducted 48 hours prior to wedding', 'Custom champagne gift box']
-    },
-    {
-      id: 'br-03',
-      name: 'Royal Sovereign Groom Styling & Glow',
-      category: 'bridal',
-      price: 4500,
-      durationMinutes: 90,
-      shortDescription: 'Precision hair sculpting, beard alignment, anti-shine HD skin finish, and eye de-puffing.',
-      benefits: ['Subtle camera-ready natural grooming', 'Scalp and shoulder relaxation', 'Includes matte finish setting']
+      price: 7500,
+      durationMinutes: 210,
+      shortDescription: 'Complete body polishing, brightening facial, hair conditioning spa, and manicure-pedicure.',
+      benefits: ['Conducted 2-3 days before ceremony', 'Head-to-toe relaxation', 'Complimentary herbal tea and refreshments']
     }
   ];
 
   readonly stylists: MasterStylist[] = [
     {
       id: 'st-01',
-      name: 'Aria Vance',
-      title: 'Creative Director & Master Colourist',
-      experienceYears: 12,
-      specialties: ['French Balayage', 'Hair Reconstruction', 'Editorial Styling'],
-      bio: 'Trained at the prestigious L’Académie de Coiffure in Paris, Aria brings over a decade of international editorial styling and multidimensional colour mastery to VELORA.',
-      signatureTreatment: 'Parisian Sun-Kissed Balayage',
-      rating: 4.98,
-      reviewCount: 342,
-      imageUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&auto=format&fit=crop&q=80'
+      name: 'Ananya Dash',
+      title: 'Creative Director & Hair Specialist',
+      experienceYears: 9,
+      specialties: ['Signature Haircuts', 'French Balayage', 'Hair Texture Consultations'],
+      bio: 'With 9 years of dedicated salon craft across leading Indian salons, Ananya specializes in haircuts that work effortlessly with natural waves and Bhubaneswar’s humid seasons. She believes every memorable look begins with listening.',
+      signatureTreatment: 'Signature Haircut & Styling',
+      rating: 4.9,
+      reviewCount: 88,
+      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80',
+      isConceptProfile: true
     },
     {
       id: 'st-02',
-      name: 'Kavya Sen',
-      title: 'Lead Aesthetician & Derma Specialist',
-      experienceYears: 9,
-      specialties: ['Clinical Facials', '24K Gold Therapy', 'Micro-Dermabrasion'],
-      bio: 'Certified clinical skin therapist obsessed with barrier restoration, non-invasive radiance treatments, and personalized botanical formulations for South Asian skin.',
-      signatureTreatment: '24K Aurum Cellular Lift Facial',
-      rating: 4.96,
-      reviewCount: 288,
-      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80'
+      name: 'Rajesh Mohanty',
+      title: 'Lead Barber & Men’s Grooming Specialist',
+      experienceYears: 8,
+      specialties: ['Precision Scissor Cuts', 'Beard Architecture', 'Hot Towel Therapy'],
+      bio: 'Rajesh brings disciplined scissor craft and relaxed hospitality to men’s grooming. Known for clean fades, natural tapers, and an unhurried hot-towel grooming experience right here in Old Town.',
+      signatureTreatment: 'Men’s Haircut & Beard Styling',
+      rating: 4.9,
+      reviewCount: 74,
+      imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80',
+      isConceptProfile: true
     },
     {
       id: 'st-03',
-      name: 'Marcus Thorne',
-      title: 'Senior Barber & Hair Sculptor',
+      name: 'Priya Patnaik',
+      title: 'Senior Bridal & Occasion Makeup Artist',
       experienceYears: 8,
-      specialties: ['Architectural Scissor Cuts', 'Beard Lineation', 'Textural Tapers'],
-      bio: 'Renowned for sharp structural scissors and classic British razor discipline. Marcus crafts timeless silhouettes designed to hold shape as hair grows out effortlessly.',
-      signatureTreatment: 'Atelier Signature Scissor Sculpt',
-      rating: 4.95,
-      reviewCount: 215,
-      imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80'
+      specialties: ['Authentic Odisha Bridal', 'Saree Draping & Jewellery Setting', 'HD Occasion Makeup'],
+      bio: 'Specializing in authentic Odisha bridal traditions, Priya pairs rich handloom sarees and temple jewellery with radiant, contemporary makeup that stays flawless across long celebrations and candid photography.',
+      signatureTreatment: 'Signature Bridal Makeup & Hair',
+      rating: 5.0,
+      reviewCount: 96,
+      imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80',
+      isConceptProfile: true
     },
     {
       id: 'st-04',
-      name: 'Zoya Qureshi',
-      title: 'Haute Bridal & Red Carpet Artist',
-      experienceYears: 10,
-      specialties: ['HD Airbrush Makeup', 'Traditional & Modern Bridal', 'Glass Skin'],
-      bio: 'Sought after by brides across the country, Zoya crafts luminous, photographic skin and regal hair structures that harmonize heritage tradition with modern editorial grace.',
-      signatureTreatment: 'The Empress Bespoke Bridal Masterpiece',
-      rating: 4.99,
-      reviewCount: 410,
-      imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80'
-    }
-  ];
-
-  readonly packages: MembershipPackage[] = [
-    {
-      id: 'pkg-01',
-      name: 'Privilege Member',
-      tier: 'Privilege',
-      monthlyPrice: 2400,
-      savingsPercentage: 20,
-      description: 'Ideal for bi-weekly grooming, signature blowouts, and regular hair health upkeep.',
-      features: [
-        '2 Signature Scissor Cuts or Blowouts monthly',
-        'Complimentary Botanical Scalp Treatment',
-        '15% privilege discount on all additional services',
-        'Priority weekday booking reservation'
-      ],
-      isBestValue: false
-    },
-    {
-      id: 'pkg-02',
-      name: 'Atelier Reserve',
-      tier: 'Atelier Reserve',
-      monthlyPrice: 4800,
-      savingsPercentage: 35,
-      description: 'Our most coveted membership for complete monthly skin radiance and hair perfection.',
-      features: [
-        '1 Hydra-Vortex or O3+ Detox Facial monthly',
-        '2 Bespoke Cuts or Velvet Blowouts monthly',
-        '1 Russian Manicure or Marine Pedicure',
-        '20% privilege discount on all colour & retail',
-        'Guaranteed weekend slot access with 24h notice'
-      ],
-      isBestValue: true,
-      accentBadge: 'Most Cherished'
-    },
-    {
-      id: 'pkg-03',
-      name: 'Haute Bespoke Club',
-      tier: 'Haute Bespoke',
-      monthlyPrice: 9500,
-      savingsPercentage: 45,
-      description: 'Unlimited luxury atelier access with dedicated Master Stylist and private suite priority.',
-      features: [
-        'Unlimited Cuts, Glosses & Thermal Blowouts',
-        'Choice of 1 24K Aurum or Cellular Facial monthly',
-        '1 Volcanic Basalt Stone Massage monthly',
-        'Full Nail Couture Suite (Manicure + Pedicure)',
-        'Private VIP Dressing & Consultation Suite access',
-        'Direct WhatsApp Concierge booking hotline'
-      ],
-      isBestValue: false
+      name: 'Smita Mishra',
+      title: 'Senior Skin & Wellness Therapist',
+      experienceYears: 7,
+      specialties: ['Hydrating Facials', 'Barrier Restoration', 'Botanical Peels'],
+      bio: 'Smita focuses on gentle, barrier-friendly treatments calibrated to Indian skin tones. Her appointments prioritize immaculate hygiene, relaxing pressure points, and long-lasting glow without abrasive redness.',
+      signatureTreatment: 'Hydra-Infusion Glow Facial',
+      rating: 4.9,
+      reviewCount: 65,
+      imageUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&auto=format&fit=crop&q=80',
+      isConceptProfile: true
     }
   ];
 
   readonly transformations: TransformationItem[] = [
     {
       id: 'tf-01',
-      title: 'French Balayage & Honey Caramel Glaze',
-      category: 'Colour Artistry',
-      description: 'Seamless transformation from dull box dye to multidimensional luminous sunlit warmth.',
-      beforeTag: 'Flat monotone brown',
-      afterTag: 'Multitonal glossed balayage',
-      stylistName: 'Aria Vance',
-      imageUrl: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&auto=format&fit=crop&q=80'
+      title: 'French Balayage & Soft Waves Gloss',
+      category: 'Balayage & Styling',
+      description: 'Lived-in warm caramel balayage with face-framing layers and reflective conditioning gloss on dark Indian hair.',
+      beforeTag: 'Flat unshaped dark hair',
+      afterTag: 'Sunlit caramel balayage & gloss',
+      beforeImageUrl: 'images/hair-before.jpg',
+      afterImageUrl: 'images/hair-after.jpg',
+      imageUrl: 'images/hair-after.jpg',
+      durationText: '3.5 hrs',
+      treatmentName: 'French Balayage & Gloss',
+      stylistName: 'Ananya Dash',
+      isPairedComparison: true
     },
     {
       id: 'tf-02',
-      title: 'Architectural Butterfly Cut & Silk Blow',
-      category: 'Haute Coiffure',
-      description: 'Layered weight removal bringing dramatic kinetic bounce, framing the jawline perfectly.',
-      beforeTag: 'Heavy unshaped length',
-      afterTag: 'Voluminous cascading layers',
-      stylistName: 'Marcus Thorne',
-      imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80'
+      title: 'Traditional Odisha Bridal Styling & Saree Draping',
+      category: 'Bridal Atelier',
+      description: 'Authentic crimson handloom saree draping, temple jewellery setting, fresh jasmine gajra, and tear-resistant HD makeup.',
+      beforeTag: 'Pre-wedding bridal trial',
+      afterTag: 'Complete traditional Odisha bridal look',
+      imageUrl: 'images/odisha-bride.jpg',
+      durationText: '4.0 hrs',
+      treatmentName: 'Signature Bridal Makeup & Hair',
+      stylistName: 'Priya Patnaik',
+      isPairedComparison: false
     },
     {
       id: 'tf-03',
-      title: '24K Aurum Cellular Radiant Skin Revital',
-      category: 'Derma Aesthetics',
-      description: 'Deep hydration and peptide lift visibly restoring firmness and glass skin translucency.',
-      beforeTag: 'Dehydrated urban stress',
-      afterTag: 'Plump glass skin luminescence',
-      stylistName: 'Kavya Sen',
-      imageUrl: 'https://images.unsplash.com/photo-1512290900672-1f5be6bb9239?w=800&auto=format&fit=crop&q=80'
-    },
-    {
-      id: 'tf-04',
-      title: 'Royal Regal Bridal Heritage Glamour',
-      category: 'Bridal Atelier',
-      description: 'High-definition airbrush finish and sculpted regal updo holding flawlessly through wedding celebrations.',
-      beforeTag: 'Bare canvas consultation',
-      afterTag: 'Couture bride luminescence',
-      stylistName: 'Zoya Qureshi',
-      imageUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80'
+      title: 'Botanical Hydra-Infusion & Barrier Care',
+      category: 'Skin Care',
+      description: 'Pore-clearing vortex hydration and antioxidant botanical infusion restoring calm, plump radiance to tired skin.',
+      beforeTag: 'Sun-dulled & congested skin',
+      afterTag: 'Hydrated, calm, lit-from-within glow',
+      imageUrl: 'images/facial-treatment.jpg',
+      durationText: '60 mins',
+      treatmentName: 'Hydra-Infusion Glow Facial',
+      stylistName: 'Smita Mishra',
+      isPairedComparison: false
     }
   ];
 
   readonly testimonials: VerifiedTestimonial[] = [
     {
       id: 'tm-01',
-      clientName: 'Nandini Rathore',
-      clientRole: 'Creative Director, Studio Aura',
-      city: 'Bhubaneswar',
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80',
+      clientName: 'Sneha Mohanty',
+      clientRole: 'Architect',
+      city: 'Saheed Nagar, Bhubaneswar',
+      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80',
       rating: 5,
-      quote: 'VELORA Studio is on par with the finest ateliers in Milan and London. Aria transformed my colour with such precision that it still looks glowing 8 weeks later. The serene ambiance is unmatched.',
-      verifiedTreatment: 'Parisian Sun-Kissed Balayage',
-      date: 'October 2026'
+      quote: 'The haircut from Ananya was exactly what I needed—she took time to understand how my wavy hair behaves in Bhubaneswar’s monsoon humidity. The unhurried scalp wash and calm studio ambiance made the visit so refreshing.',
+      verifiedTreatment: 'Signature Haircut & Styling',
+      date: 'October 2026',
+      isConceptSample: true
     },
     {
       id: 'tm-02',
-      clientName: 'Vikramaditya Mohapatra',
-      clientRole: 'Managing Partner, Zenith Capital',
-      city: 'Bhubaneswar',
+      clientName: 'Rohan Das',
+      clientRole: 'Product Designer',
+      city: 'Patia, Bhubaneswar',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80',
       rating: 5,
-      quote: 'Marcus is a master of scissor geometry. No rushed clippers or generic styling; he took the time to understand my hairline and crafted the sharpest cut I have ever had. The hot towel ritual is pure therapy.',
-      verifiedTreatment: 'Atelier Signature Scissor Sculpt',
-      date: 'September 2026'
+      quote: 'Rajesh is exceptionally skilled with scissor work and beard shaping. Clean salon, zero rush, and the hot-towel treatment afterwards was top tier. Easily the best grooming experience in Old Town.',
+      verifiedTreatment: 'Men’s Haircut & Beard Styling',
+      date: 'September 2026',
+      isConceptSample: true
     },
     {
       id: 'tm-03',
-      clientName: 'Dr. Meera Sanjeev',
-      clientRole: 'Dermatologist & Wellness Researcher',
-      city: 'Bhubaneswar',
-      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80',
+      clientName: 'Sonali Mishra',
+      clientRole: 'Educator',
+      city: 'Old Town, Bhubaneswar',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80',
       rating: 5,
-      quote: 'As a dermatologist, I am notoriously strict about hygiene and skincare protocols. Kavya’s Hydra-Vortex and 24K treatment are clinically immaculate. Highly recommended for sensitive Indian skin.',
-      verifiedTreatment: '24K Aurum Cellular Lift Facial',
-      date: 'October 2026'
+      quote: 'Priya did my sister’s bridal saree draping and makeup for her wedding ceremony. The look felt authentic to our Odisha traditions while staying comfortable and photo-ready through the whole celebration.',
+      verifiedTreatment: 'Signature Bridal Makeup & Hair',
+      date: 'October 2026',
+      isConceptSample: true
+    }
+  ];
+
+  readonly packages: MembershipPackage[] = [
+    {
+      id: 'pkg-01',
+      name: 'Essential Care Membership',
+      tier: 'Privilege',
+      monthlyPrice: 1800,
+      savingsPercentage: 20,
+      description: 'Designed for bi-weekly grooming, blowouts, and regular hair health upkeep.',
+      features: [
+        '2 Signature Haircuts or Blowouts per month',
+        'Complimentary Scalp Detox wash session',
+        '15% privilege discount on all additional treatments',
+        'Priority weekday appointment booking'
+      ],
+      isBestValue: false
+    },
+    {
+      id: 'pkg-02',
+      name: 'Glow & Style Routine',
+      tier: 'Atelier Reserve',
+      monthlyPrice: 3800,
+      savingsPercentage: 30,
+      description: 'Our most balanced package for monthly skin radiance and hair maintenance.',
+      features: [
+        '1 Hydra-Infusion Glow Facial monthly',
+        '2 Precision Haircuts or Blowouts monthly',
+        '1 Spa Manicure or Callus Pedicure',
+        '20% member benefit on colour & retail products',
+        'Guaranteed weekend slot access with 24h notice'
+      ],
+      isBestValue: true,
+      accentBadge: 'Most Popular'
+    },
+    {
+      id: 'pkg-03',
+      name: 'Signature Patron Club',
+      tier: 'Haute Bespoke',
+      monthlyPrice: 6500,
+      savingsPercentage: 40,
+      description: 'All-inclusive personal salon care with dedicated stylist priority and private suite access.',
+      features: [
+        'Unlimited Haircuts, Blowouts & Conditioning Glosses',
+        'Choice of 1 Hydra Facial or Hot Stone Massage monthly',
+        'Complete Hand & Foot Spa care monthly',
+        'Private consultation room priority',
+        'Direct WhatsApp Concierge reservation line'
+      ],
+      isBestValue: false
     }
   ];
 
   readonly faqs: SalonFaq[] = [
     {
-      question: 'How do consultations work prior to my treatment?',
-      answer: 'Every appointment begins with a 10-minute private consultation. Your master stylist analyzes your hair porosity, skin undertones, face shape, and lifestyle goals before starting.',
+      question: 'Where in Old Town, Bhubaneswar is VELORA Studio located?',
+      answer: 'We are conveniently located in Old Town at Samantarapur, on the upper floor above Bank of Baroda, just minutes from the historic Lingaraj Temple approach road. Dedicated visitor parking is available on site.',
+      category: 'Location'
+    },
+    {
+      question: 'How do personal consultations work prior to styling?',
+      answer: 'Every appointment begins with a brief 10-minute consultation. Your stylist listens to your routine, assesses your natural hair texture or skin undertone, and recommends what will work best for you in local weather.',
       category: 'Appointments'
     },
     {
-      question: 'What is the cancellation and rescheduling protocol?',
-      answer: 'We appreciate at least 6 hours advance notice for rescheduling so we can release the reserved artisan slot to waiting guests. There are zero cancellation penalties.',
-      category: 'Appointments'
-    },
-    {
-      question: 'Are the products used cruelty-free and organic?',
-      answer: 'Yes. We curate strictly from certified cruelty-free, formaldehyde-free, and ammonia-free formulations sourced from premier botanical laboratories in France, Italy, and Japan.',
-      category: 'Treatments'
-    },
-    {
-      question: 'Can I book multiple services in one single appointment?',
-      answer: 'Yes. Our smart booking engine calculates cumulative appointment duration and coordinates master stylists so you can seamlessly enjoy coiffure, facials, and nail couture without waiting.',
+      question: 'Can I book directly via WhatsApp?',
+      answer: 'Yes! While our online reservation suite is instant and requires no advance payment, you are always welcome to message our concierge team directly on WhatsApp at +91 94370 00000 for consultations or group bookings.',
       category: 'Booking'
     },
     {
-      question: 'Is this appointment a live transaction or a portfolio demo?',
-      answer: 'This application is a portfolio concept demonstration for VELORA Studio. Bookings generate real-time frontend confirmations and calendar invites without charging cards or dispatching real SMS notifications.',
+      question: 'What hygiene standards do you follow?',
+      answer: 'We adhere to medical-grade hygiene protocols: all scissors, combs, and metal implements are sanitized in UV-C sterilizers between every guest, and fresh laundered towels and capes are provided for every client.',
+      category: 'Hygiene'
+    },
+    {
+      question: 'Is this appointment website a live production booking system?',
+      answer: 'VELORA Studio is a curated portfolio design concept created for demonstration. Appointments placed here generate instant client confirmations and downloadable calendar (.ics) files without charging credit cards or sending real SMS notifications.',
       category: 'General'
     }
   ];

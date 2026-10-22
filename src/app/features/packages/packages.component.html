@@ -1,14 +1,17 @@
-<section id="packages" class="section-spacing packages-section" aria-label="VIP Memberships & Curated Packages">
+<section id="packages" class="section-spacing packages-section" aria-label="Salon Care Memberships">
   <div class="container-velora">
     <!-- Section Header -->
     <div class="section-header">
-      <span class="section-eyebrow">Atelier Privilege &bull; Memberships</span>
+      <span class="section-eyebrow">Routine Care &bull; Memberships</span>
       <h2 class="section-title">
-        Curated <span class="gold-italic">Ritual Memberships</span>
+        Care &amp; Styling <span class="gold-italic">Memberships</span>
       </h2>
       <p class="section-subtitle">
-        Elevate your beauty ritual into a continuous regimen of restorative luxury. Exclusive tiers offering significant privilege savings and guaranteed reservation access.
+        Maintain regular haircuts, blowouts, and skin care with monthly member benefits and priority booking.
       </p>
+      <div style="margin-top: 1rem;">
+        <span class="concept-tag dark-bg">Concept Membership Plans &bull; Portfolio Demonstration</span>
+      </div>
     </div>
 
     <!-- Pricing Packages Grid -->
@@ -37,7 +40,7 @@
               <span class="period">/ month</span>
             </div>
             <div class="savings-badge">
-              Save up to {{ pkg.savingsPercentage }}% on standard menu
+              Save ~{{ pkg.savingsPercentage }}% compared to single sessions
             </div>
           </div>
 
@@ -60,8 +63,8 @@
             type="button" 
             [class]="pkg.isBestValue ? 'btn-gold w-full' : 'btn-outline-gold w-full'"
             (click)="selectPackage(pkg)"
-            [attr.aria-label]="'Join ' + pkg.name + ' membership'">
-            <span>Join {{ pkg.tier }}</span>
+            [attr.aria-label]="'Inquire about ' + pkg.name + ' membership'">
+            <span>Select Plan</span>
           </button>
         </article>
       }

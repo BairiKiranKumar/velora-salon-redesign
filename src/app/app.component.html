@@ -6,37 +6,34 @@
 
 <!-- Main Page Content Structure -->
 <main id="main-content" class="main-wrapper">
-  <!-- 1. Cinematic Hero Section -->
+  <!-- 1. Editorial Hero Section -->
   <app-hero></app-hero>
 
-  <!-- 2. Sanctuary & Philosophy Section -->
+  <!-- 2. Sanctuary Philosophy & Unhurried Care (Warm Ivory Section) -->
   <app-brand-story></app-brand-story>
 
-  <!-- 3. Curated Service Collections Section -->
+  <!-- 3. Curated Services (6 Signature first with expandable price list) -->
   <app-collections></app-collections>
 
-  <!-- 4. Resident Master Artisans Dossier -->
+  <!-- 4. Our Team (Approachable Indian stylists & concept badges) -->
   <app-stylists></app-stylists>
 
-  <!-- 5. Editorial Transformations Gallery -->
+  <!-- 5. Real Transformations Gallery (Paired Before/After & Odisha Bridal) -->
   <app-transformations></app-transformations>
 
-  <!-- 6. Curated Ritual Memberships & VIP Packages -->
-  <app-packages></app-packages>
-
-  <!-- 7. Verified Client Reviews & Dossier -->
+  <!-- 6. Client Reviews (Warm Ivory Section with honest sample tags) -->
   <app-reviews></app-reviews>
 
-  <!-- 8. Interactive Inline Booking Suite Section -->
+  <!-- 7. Interactive Inline Booking Suite Section (Plain 4-step wizard) -->
   <section id="booking" class="section-spacing inline-booking-section" aria-label="Book your appointment">
     <div class="container-velora">
       <div class="section-header">
-        <span class="section-eyebrow">Reservation Suite &bull; Booking</span>
+        <span class="section-eyebrow">Appointments &bull; Old Town</span>
         <h2 class="section-title">
-          Schedule Your <span class="gold-italic">Ritual</span>
+          Book Your <span class="gold-italic">Appointment</span>
         </h2>
         <p class="section-subtitle">
-          Select your desired services, master artisan, and preferred appointment window. Our concierge will prepare your private suite.
+          Select your services, preferred date, and stylist. Our team will prepare for your visit in Old Town, Bhubaneswar.
         </p>
       </div>
 
@@ -46,11 +43,14 @@
     </div>
   </section>
 
-  <!-- 9. Concierge, Old Town Location & FAQ -->
+  <!-- 8. Memberships & Routine Care Packages (Kept lower on page) -->
+  <app-packages></app-packages>
+
+  <!-- 9. Visit Us, Map & Instant WhatsApp -->
   <app-concierge></app-concierge>
 </main>
 
-<!-- Master Architectural Footer -->
+<!-- Architectural Footer -->
 <app-footer></app-footer>
 
 <!-- Slide-Over Appointment Booking Drawer (Accessible Modal Overlay) -->
@@ -61,7 +61,7 @@
       (click)="$event.stopPropagation()"
       role="dialog" 
       aria-modal="true" 
-      aria-label="Appointment Reservation Drawer">
+      aria-label="Appointment Booking Drawer">
       <app-booking-wizard [isDrawerMode]="true"></app-booking-wizard>
     </aside>
   </div>

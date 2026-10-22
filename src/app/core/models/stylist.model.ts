@@ -9,4 +9,5 @@ export interface MasterStylist {
   rating: number;
   reviewCount: number;
   imageUrl: string;
+  isConceptProfile?: boolean;
 }

@@ -16,6 +16,13 @@ export class TransformationsComponent {
 
   readonly transformations = this.salonData.transformations;
 
+  onImgError(event: Event): void {
+    const target = event.target as HTMLImageElement;
+    if (target) {
+      target.src = 'images/hero-portrait.jpg';
+    }
+  }
+
   openBooking(): void {
     this.bookingService.openDrawer();
   }

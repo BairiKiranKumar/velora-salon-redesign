@@ -1,11 +1,11 @@
 export type ServiceCategoryId = 
   | 'all'
-  | 'coiffure'
+  | 'hair'
   | 'color'
-  | 'aesthetics'
-  | 'rituals'
-  | 'hands-feet'
-  | 'bridal';
+  | 'skin'
+  | 'bridal'
+  | 'men'
+  | 'spa';
 
 export interface ServiceCategory {
   id: ServiceCategoryId;

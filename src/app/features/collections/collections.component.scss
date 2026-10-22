@@ -449,3 +449,30 @@
     height: 14px;
   }
 }
+
+/* Price List Expand Toggle Banner */
+.price-list-toggle-banner {
+  display: flex;
+  justify-content: center;
+  margin-top: 3.5rem;
+}
+
+.toggle-all-services-btn {
+  padding: 0.875rem 2.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  gap: 0.75rem;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: var(--velora-brass);
+    transition: transform var(--transition-fast);
+  }
+
+  &:hover svg {
+    transform: translateY(2px);
+  }
+}
+

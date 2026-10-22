@@ -1,71 +1,85 @@
 <section id="hero" class="hero-section" aria-label="Welcome to VELORA Studio">
-  <!-- Cinematic Ambient Background Overlays -->
+  <!-- Subtle warm ambient background glow -->
   <div class="hero-bg-container">
-    <div class="hero-bg-image" role="img" aria-label="Editorial luxury salon interior with warm ambient illumination"></div>
-    <div class="hero-overlay-dark"></div>
     <div class="hero-radial-glow"></div>
   </div>
 
   <div class="container-velora hero-content-wrapper">
-    <div class="hero-content">
-      <!-- Eyebrow Pill -->
-      <div class="hero-badge">
-        <span class="pulse-dot" aria-hidden="true"></span>
-        <span>ATELIER SANCTUARY &bull; BHUBANESWAR</span>
+    <div class="hero-editorial-grid">
+      <!-- Left Column: Editorial Headline & Actions -->
+      <div class="hero-text-col">
+        <div class="hero-badge">
+          <span class="location-dot" aria-hidden="true"></span>
+          <span>OLD TOWN, BHUBANESWAR</span>
+        </div>
+
+        <h1 class="hero-title">
+          Good hair.<br>
+          <span class="gold-italic">Your kind of confidence.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Personalised hair, skin and bridal care in Old Town, Bhubaneswar.
+        </p>
+
+        <!-- Strong Booking CTA Group -->
+        <div class="hero-cta-group">
+          <button type="button" class="btn-gold hero-btn-primary" (click)="openBooking()">
+            <span>Book Appointment</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <a href="#collections" class="hero-text-link">
+            <span>Explore Services</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon-sm" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Practical Visit & Demo Cues Strip -->
+        <div class="hero-practical-strip" aria-label="Studio highlights">
+          <div class="practical-item">
+            <span class="item-title">Samantarapur</span>
+            <span class="item-sub">Old Town approach</span>
+          </div>
+          <div class="item-divider" aria-hidden="true"></div>
+          <div class="practical-item">
+            <span class="item-title">Unhurried Care</span>
+            <span class="item-sub">1-on-1 consultations</span>
+          </div>
+          <div class="item-divider" aria-hidden="true"></div>
+          <div class="practical-item">
+            <span class="item-title">UV-C Sanitized</span>
+            <span class="item-sub">Hospital-grade hygiene</span>
+          </div>
+          <div class="item-divider" aria-hidden="true"></div>
+          <div class="practical-item">
+            <span class="concept-tag dark-bg">Portfolio Demo</span>
+            <span class="item-sub">Concept Website</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="hero-title">
-        The Art of <span class="gold-italic">Elevated Beauty</span> &amp; Haute Coiffure
-      </h1>
-
-      <!-- Description Subtitle -->
-      <p class="hero-subtitle">
-        Indulge in bespoke architectural hair sculpting, clinical dermatological skin therapies, and couture bridal glamour in a serene, private sanctuary designed for quiet luxury.
-      </p>
-
-      <!-- Action Buttons -->
-      <div class="hero-cta-group">
-        <button type="button" class="btn-gold hero-btn-primary" (click)="openBooking()">
-          <span>Reserve Your Ritual</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-
-        <a href="#collections" class="btn-outline-gold hero-btn-secondary">
-          <span>Explore Collections</span>
-        </a>
-      </div>
-
-      <!-- Metric Accolades Strip -->
-      <div class="hero-metrics-strip" aria-label="Key highlights">
-        <div class="metric-item">
-          <span class="metric-value">15+</span>
-          <span class="metric-label">Years Master Artistry</span>
-        </div>
-        <div class="metric-divider" aria-hidden="true"></div>
-        <div class="metric-item">
-          <span class="metric-value">4.98 <span class="gold-star">★</span></span>
-          <span class="metric-label">Client Distinction</span>
-        </div>
-        <div class="metric-divider" aria-hidden="true"></div>
-        <div class="metric-item">
-          <span class="metric-value">100%</span>
-          <span class="metric-label">Botanical Purity</span>
-        </div>
-        <div class="metric-divider" aria-hidden="true"></div>
-        <div class="metric-item">
-          <span class="metric-value">Private</span>
-          <span class="metric-label">VIP Bridal Suites</span>
+      <!-- Right Column: Large Indian Beauty Portrait with Visible Salon Detail -->
+      <div class="hero-visual-col">
+        <div class="portrait-card">
+          <div class="portrait-image-wrapper">
+            <img 
+              src="images/hero-portrait.jpg" 
+              alt="Indian beauty portrait with healthy wavy dark hair in upscale VELORA studio Bhubaneswar"
+              class="portrait-img">
+            <div class="portrait-gold-frame" aria-hidden="true"></div>
+          </div>
+          
+          <div class="portrait-floating-chip">
+            <span class="chip-accent">VELORA Studio</span>
+            <span class="chip-label">Old Town &bull; Bhubaneswar</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Scroll Down Indicator -->
-  <a href="#story" class="scroll-cue" aria-label="Scroll to discover sanctuary story">
-    <span class="scroll-text">DISCOVER</span>
-    <span class="scroll-line"></span>
-  </a>
 </section>

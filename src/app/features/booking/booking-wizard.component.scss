@@ -928,3 +928,219 @@
     height: 16px;
   }
 }
+
+/* ==========================================================================
+   Compact Service Rows & Persistent Bottom Bar (Streamlined Booking Flow)
+   ========================================================================== */
+.compact-filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.compact-service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.compact-service-row {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: rgba(18, 20, 28, 0.6);
+  border: 1px solid var(--velora-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    border-color: var(--velora-brass-border);
+    background: rgba(18, 20, 28, 0.85);
+  }
+
+  &.checked {
+    border-color: var(--velora-gold);
+    background: rgba(212, 175, 55, 0.08);
+  }
+}
+
+.compact-checkbox-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compact-info-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.compact-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.compact-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--velora-cream);
+  line-height: 1.3;
+}
+
+.gold-badge-compact {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--velora-brass);
+  background: rgba(197, 160, 89, 0.15);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+}
+
+.compact-desc {
+  font-size: 0.75rem;
+  color: var(--velora-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.15rem;
+}
+
+.compact-pricing-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.compact-price {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--velora-gold-light);
+}
+
+.compact-duration {
+  font-size: 0.6875rem;
+  color: var(--velora-muted);
+}
+
+/* Persistent Bottom Bar */
+.wizard-persistent-bar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: rgba(14, 15, 18, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--velora-gold-border);
+  padding: 1rem 1.25rem 0.875rem;
+  margin-top: 1.5rem;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.persistent-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.persistent-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.persistent-count {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--velora-muted);
+}
+
+.persistent-total-price {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--velora-cream);
+}
+
+.persistent-duration {
+  font-size: 0.8125rem;
+  color: var(--velora-brass);
+}
+
+.persistent-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-back-step {
+  padding: 0.65rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--velora-pearl);
+  background: transparent;
+  border: 1px solid var(--velora-border);
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    color: var(--velora-cream);
+    border-color: var(--velora-border-light);
+  }
+}
+
+.persistent-continue-btn {
+  padding: 0.75rem 1.625rem;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+
+  .arrow-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.persistent-wa-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--velora-muted);
+  margin-top: 0.65rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+  .wa-inline-link {
+    color: #25D366;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+

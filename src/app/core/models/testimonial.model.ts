@@ -8,6 +8,7 @@ export interface VerifiedTestimonial {
   quote: string;
   verifiedTreatment: string;
   date: string;
+  isConceptSample?: boolean;
 }
 
 export interface TransformationItem {
@@ -17,6 +18,11 @@ export interface TransformationItem {
   description: string;
   beforeTag: string;
   afterTag: string;
-  stylistName: string;
+  beforeImageUrl?: string;
+  afterImageUrl?: string;
   imageUrl: string;
+  durationText: string;
+  treatmentName: string;
+  stylistName: string;
+  isPairedComparison?: boolean;
 }

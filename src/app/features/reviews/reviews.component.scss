@@ -1,6 +1,8 @@
 .reviews-section {
   position: relative;
-  background: var(--velora-noir);
+  background-color: var(--velora-ivory);
+  border-top: 1px solid var(--velora-ivory-border);
+  border-bottom: 1px solid var(--velora-ivory-border);
 }
 
 .reviews-grid {
@@ -23,39 +25,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .stars-row {
   display: flex;
   gap: 0.25rem;
-  color: var(--velora-gold);
+  color: var(--velora-brass);
   font-size: 1.125rem;
 }
 
-.verified-badge {
+.sample-review-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
   font-size: 0.6875rem;
   font-weight: 600;
-  color: var(--velora-gold-light);
-  letter-spacing: 0.05em;
+  color: var(--velora-espresso-muted);
+  background: var(--velora-ivory-subtle);
+  border: 1px solid var(--velora-ivory-border);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-
-  .badge-icon {
-    width: 13px;
-    height: 13px;
-    color: var(--velora-gold);
-  }
 }
 
 .review-quote {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.125rem;
+  font-size: 1.15rem;
   line-height: 1.7;
-  color: var(--velora-cream);
+  color: var(--velora-espresso);
   margin-bottom: 1.5rem;
   flex: 1;
 }
@@ -67,35 +66,35 @@
   font-size: 0.75rem;
   padding: 0.35rem 0.75rem;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--velora-sandstone);
+  border: 1px solid var(--velora-ivory-border);
   margin-bottom: 1.5rem;
   width: fit-content;
 }
 
 .pill-label {
-  color: var(--velora-muted);
+  color: var(--velora-espresso-muted);
 }
 
 .pill-value {
-  color: var(--velora-gold-light);
-  font-weight: 500;
+  color: var(--velora-espresso);
+  font-weight: 600;
 }
 
 .client-profile {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--velora-ivory-border);
   padding-top: 1.25rem;
 }
 
 .client-avatar {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1.5px solid var(--velora-gold-border);
+  border: 1.5px solid var(--velora-brass-border);
 }
 
 .client-details {
@@ -106,10 +105,10 @@
 .client-name {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--velora-cream);
+  color: var(--velora-espresso);
 }
 
 .client-role {
   font-size: 0.75rem;
-  color: var(--velora-muted);
+  color: var(--velora-espresso-muted);
 }

@@ -10,8 +10,8 @@
   margin-bottom: 5rem;
 
   @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3rem;
   }
 }
 
@@ -44,11 +44,17 @@
     width: 20px;
     height: 20px;
   }
+
+  &.wa-icon-wrap {
+    background: rgba(37, 211, 102, 0.12);
+    border-color: rgba(37, 211, 102, 0.35);
+  }
 }
 
 .card-info-text {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .card-heading {
@@ -63,21 +69,21 @@
   color: var(--velora-pearl);
 }
 
-.gold-link {
-  color: var(--velora-gold-light);
-  font-weight: 500;
-
-  &:hover {
-    text-decoration: underline;
-  }
+.landmarks-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
 }
 
-.valet-badge {
+.landmark-tag {
   display: inline-block;
-  margin-top: 0.625rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.75rem;
-  color: var(--velora-gold);
-  font-weight: 500;
+  color: var(--velora-brass);
 }
 
 .hours-schedule {
@@ -102,32 +108,83 @@
   font-weight: 500;
 }
 
+.whatsapp-highlight-card {
+  border-color: rgba(37, 211, 102, 0.3);
+  background: rgba(18, 20, 28, 0.85);
+}
+
+.wa-action-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.875rem;
+}
+
 /* Map Card */
 .concierge-map-card {
   position: relative;
-  min-height: 420px;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   padding: 0;
+  border-radius: 12px;
+}
+
+.map-frame-container {
+  width: 100%;
+  flex: 1;
+  min-height: 330px;
+  position: relative;
+  background: #181a20;
 }
 
 .map-frame {
   width: 100%;
   height: 100%;
-  filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(90%);
+  border: none;
 }
 
-.map-overlay-badge {
-  position: absolute;
-  bottom: 1.25rem;
-  right: 1.25rem;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  background: rgba(10, 11, 14, 0.88);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--velora-gold-border);
+/* Fallback Directions Bar */
+.map-fallback-bar {
+  padding: 1.25rem 1.5rem;
+  background: rgba(10, 11, 14, 0.95);
+  border-top: 1px solid var(--velora-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.fallback-landmark-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.landmark-name {
+  font-size: 0.9375rem;
+  color: var(--velora-cream);
+}
+
+.landmark-sub {
   font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--velora-gold);
+  color: var(--velora-muted);
+}
+
+.map-directions-btn {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+
+  .arrow-icon {
+    width: 14px;
+    height: 14px;
+  }
 }
 
 /* FAQ Accordion */
