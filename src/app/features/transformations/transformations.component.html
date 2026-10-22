@@ -1,0 +1,66 @@
+<section id="transformations" class="section-spacing transformations-section" aria-label="Client Transformations Gallery">
+  <div class="container-velora">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-eyebrow">Visual Artistry &bull; Transformations</span>
+      <h2 class="section-title">
+        The Editorial <span class="gold-italic">Gallery</span>
+      </h2>
+      <p class="section-subtitle">
+        Witness the synergy of diagnostic consultation, architectural cutting, and master pigment artistry. Authentic results from our Bhubaneswar studio.
+      </p>
+    </div>
+
+    <!-- Transformations Grid -->
+    <div class="transformations-grid">
+      @for (item of transformations; track item.id) {
+        <article class="transformation-card glass-card">
+          <!-- Image Wrapper with Reveal Overlays -->
+          <div class="image-box">
+            <img 
+              [src]="item.imageUrl" 
+              [alt]="item.title"
+              class="transformation-image"
+              loading="lazy">
+            <div class="category-badge">{{ item.category }}</div>
+          </div>
+
+          <!-- Content Breakdown -->
+          <div class="transformation-details">
+            <h3 class="transformation-title">{{ item.title }}</h3>
+            <p class="transformation-description">{{ item.description }}</p>
+
+            <!-- Before vs After Tags -->
+            <div class="tag-comparison">
+              <div class="comparison-row">
+                <span class="comp-label">Baseline:</span>
+                <span class="comp-value baseline">{{ item.beforeTag }}</span>
+              </div>
+              <div class="comparison-row">
+                <span class="comp-label">Result:</span>
+                <span class="comp-value result">{{ item.afterTag }}</span>
+              </div>
+            </div>
+
+            <!-- Stylist Attribution -->
+            <div class="stylist-credit">
+              <span class="credit-label">Crafted by:</span>
+              <span class="credit-name">{{ item.stylistName }}</span>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+
+    <!-- Bottom Consultation Banner -->
+    <div class="gallery-consultation-banner glass-card">
+      <div class="banner-text">
+        <h3 class="banner-title">Ready for Your Signature Metamorphosis?</h3>
+        <p class="banner-desc">Reserve a dedicated 1-on-1 consultation with our creative directors to design your bespoke aesthetic plan.</p>
+      </div>
+      <button type="button" class="btn-gold" (click)="openBooking()">
+        <span>Schedule Consultation</span>
+      </button>
+    </div>
+  </div>
+</section>

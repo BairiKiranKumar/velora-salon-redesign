@@ -1,0 +1,137 @@
+.packages-section {
+  position: relative;
+  background: linear-gradient(180deg, var(--velora-noir) 0%, #0d0f15 100%);
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: stretch;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.package-card {
+  position: relative;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-smooth);
+
+  &.featured {
+    border-color: var(--velora-gold);
+    background: rgba(22, 25, 36, 0.9);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.2);
+    transform: translateY(-8px);
+
+    @media (max-width: 1023px) {
+      transform: none;
+    }
+  }
+}
+
+.package-featured-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #f3d47d 0%, #d4af37 100%);
+  color: #0b0c10;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.package-header {
+  margin-bottom: 1.5rem;
+}
+
+.package-title {
+  font-size: 1.75rem;
+  color: var(--velora-cream);
+  margin-bottom: 0.5rem;
+}
+
+.package-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--velora-pearl);
+}
+
+.package-pricing {
+  margin-bottom: 1rem;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  color: var(--velora-cream);
+  font-family: var(--font-display);
+
+  .currency {
+    font-size: 1.25rem;
+    color: var(--velora-gold);
+  }
+
+  .amount {
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--velora-gold-light);
+  }
+
+  .period {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--velora-muted);
+  }
+}
+
+.savings-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--velora-success);
+  font-weight: 500;
+}
+
+.features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-bottom: 2rem;
+  flex: 1;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--velora-pearl);
+    line-height: 1.5;
+
+    .check-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--velora-gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  }
+}
+
+.w-full {
+  width: 100%;
+}

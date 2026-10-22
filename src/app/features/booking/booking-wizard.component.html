@@ -1,0 +1,569 @@
+<div class="booking-wizard-container" [class.drawer-mode]="isDrawerMode">
+  @if (isDrawerMode) {
+    <!-- Drawer Header Bar -->
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <span class="drawer-eyebrow">Atelier Reservation</span>
+        <h2 class="drawer-heading">Reserve Your Ritual</h2>
+      </div>
+      <button type="button" class="drawer-close-btn" (click)="closeDrawer()" aria-label="Close reservation drawer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="close-icon" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  }
+
+  <!-- 4-Step Interactive Progress Tracker -->
+  <nav class="wizard-stepper" aria-label="Booking steps progress">
+    <button 
+      type="button"
+      class="step-item" 
+      [class.active]="bookingService.currentStep() === 1"
+      [class.completed]="bookingService.currentStep() > 1"
+      (click)="goToStep(1)">
+      <span class="step-num">
+        @if (bookingService.currentStep() > 1) {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="check-svg" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        } @else {
+          1
+        }
+      </span>
+      <span class="step-label">Select Rituals</span>
+    </button>
+
+    <div class="step-track-line" [class.filled]="bookingService.currentStep() >= 2" aria-hidden="true"></div>
+
+    <button 
+      type="button"
+      class="step-item" 
+      [class.active]="bookingService.currentStep() === 2"
+      [class.completed]="bookingService.currentStep() > 2"
+      [disabled]="bookingService.serviceCount() === 0"
+      (click)="goToStep(2)">
+      <span class="step-num">
+        @if (bookingService.currentStep() > 2) {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="check-svg" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        } @else {
+          2
+        }
+      </span>
+      <span class="step-label">Schedule &amp; Artisan</span>
+    </button>
+
+    <div class="step-track-line" [class.filled]="bookingService.currentStep() >= 3" aria-hidden="true"></div>
+
+    <button 
+      type="button"
+      class="step-item" 
+      [class.active]="bookingService.currentStep() === 3"
+      [class.completed]="bookingService.currentStep() > 3"
+      [disabled]="!bookingService.selectedDate()"
+      (click)="goToStep(3)">
+      <span class="step-num">
+        @if (bookingService.currentStep() > 3) {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="check-svg" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        } @else {
+          3
+        }
+      </span>
+      <span class="step-label">Guest Dossier</span>
+    </button>
+
+    <div class="step-track-line" [class.filled]="bookingService.currentStep() >= 4" aria-hidden="true"></div>
+
+    <button 
+      type="button"
+      class="step-item" 
+      [class.active]="bookingService.currentStep() === 4"
+      [disabled]="clientForm.invalid"
+      (click)="goToStep(4)">
+      <span class="step-num">4</span>
+      <span class="step-label">Review &amp; Confirm</span>
+    </button>
+  </nav>
+
+  <!-- Step Content Wrapper -->
+  <div class="wizard-body">
+    <!-- ==========================================
+         STEP 1: SELECT RITUALS / SERVICES
+         ========================================== -->
+    @if (bookingService.currentStep() === 1) {
+      <div class="step-pane step-services animate-fadeIn">
+        <div class="step-header-row">
+          <div>
+            <h3 class="step-title">Choose Your Atelier Rituals</h3>
+            <p class="step-subtitle">Select one or multiple services. Duration and pricing update in real time.</p>
+          </div>
+          <div class="step-live-summary">
+            <span class="summary-count">{{ bookingService.serviceCount() }} Selected</span>
+            <span class="summary-investment">₹{{ bookingService.totalPrice() | number }} &bull; {{ bookingService.formattedDuration() }}</span>
+          </div>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="step1-filters">
+          <div class="search-mini glass-card">
+            <input 
+              type="search" 
+              placeholder="Search rituals..."
+              [ngModel]="serviceSearch()"
+              (ngModelChange)="serviceSearch.set($event)"
+              class="search-mini-input"
+              aria-label="Filter rituals">
+          </div>
+
+          <div class="mini-category-pills">
+            @for (cat of salonData.categories; track cat.id) {
+              <button 
+                type="button" 
+                class="mini-pill"
+                [class.active]="activeCategory() === cat.id"
+                (click)="setCategory(cat.id)">
+                {{ cat.name }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Scrollable Service Selection Checklist -->
+        <div class="service-selection-list">
+          @for (service of filteredServices(); track service.id) {
+            <label 
+              class="service-select-row glass-card"
+              [class.checked]="isServiceSelected(service.id)">
+              <div class="checkbox-col">
+                <input 
+                  type="checkbox"
+                  [checked]="isServiceSelected(service.id)"
+                  (change)="toggleService(service)"
+                  class="custom-checkbox"
+                  [attr.aria-label]="'Select ' + service.name">
+                <span class="custom-checkmark" aria-hidden="true"></span>
+              </div>
+
+              <div class="service-info-col">
+                <div class="name-badge-row">
+                  <span class="service-name-text">{{ service.name }}</span>
+                  @if (service.isSignature) {
+                    <span class="gold-badge">Signature</span>
+                  }
+                </div>
+                <span class="service-desc-text">{{ service.shortDescription }}</span>
+              </div>
+
+              <div class="service-price-col">
+                <span class="price-val">₹{{ service.price | number }}</span>
+                <span class="duration-val">{{ service.durationMinutes }}m</span>
+              </div>
+            </label>
+          }
+        </div>
+
+        <!-- Step 1 Actions -->
+        <div class="wizard-actions">
+          <div class="actions-left">
+            @if (bookingService.serviceCount() > 0) {
+              <button type="button" class="btn-text-subtle" (click)="bookingService.clearServices()">
+                Clear Selection
+              </button>
+            }
+          </div>
+          <button 
+            type="button" 
+            class="btn-gold" 
+            [disabled]="bookingService.serviceCount() === 0"
+            (click)="proceedToStep2()">
+            <span>Next: Choose Schedule</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- ==========================================
+         STEP 2: ARTISAN & DATE / TIME SELECTION
+         ========================================== -->
+    @if (bookingService.currentStep() === 2) {
+      <div class="step-pane step-schedule animate-fadeIn">
+        <h3 class="step-title">Select Artisan &amp; Desired Schedule</h3>
+        <p class="step-subtitle">Choose your preferred resident master or allow us to assign the first available artisan.</p>
+
+        <!-- Preferred Stylist Selection -->
+        <div class="section-block">
+          <h4 class="block-title">Preferred Resident Artisan (Optional)</h4>
+          <div class="stylist-picker-grid">
+            <button 
+              type="button"
+              class="stylist-picker-card glass-card"
+              [class.active]="isStylistSelected(null)"
+              (click)="selectStylist(null)">
+              <div class="avatar-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="icon-spark" aria-hidden="true">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <div class="stylist-card-info">
+                <span class="picker-name">First Available Specialist</span>
+                <span class="picker-sub">Optimal schedule flexibility</span>
+              </div>
+            </button>
+
+            @for (stylist of salonData.stylists; track stylist.id) {
+              <button 
+                type="button"
+                class="stylist-picker-card glass-card"
+                [class.active]="isStylistSelected(stylist.id)"
+                (click)="selectStylist(stylist)">
+                <img [src]="stylist.imageUrl" [alt]="stylist.name" class="picker-avatar">
+                <div class="stylist-card-info">
+                  <span class="picker-name">{{ stylist.name }}</span>
+                  <span class="picker-sub">{{ stylist.title }} &bull; {{ stylist.rating }}★</span>
+                </div>
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Date Picker Strip (Next 14 Days) -->
+        <div class="section-block">
+          <h4 class="block-title">Select Appointment Date</h4>
+          <div class="dates-strip" role="radiogroup" aria-label="Select appointment date">
+            @for (d of availableDates(); track d.iso) {
+              <button 
+                type="button"
+                role="radio"
+                class="date-cell glass-card"
+                [class.active]="bookingService.selectedDate() === d.iso"
+                [attr.aria-checked]="bookingService.selectedDate() === d.iso"
+                (click)="selectDate(d.iso)">
+                <span class="date-day">{{ d.dayName }}</span>
+                <span class="date-num">{{ d.dayNum }}</span>
+                <span class="date-month">{{ d.monthName }}</span>
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Time Slot Selection Grid -->
+        <div class="section-block">
+          <h4 class="block-title">Select Appointment Slot</h4>
+          <div class="time-slots-grid" role="radiogroup" aria-label="Select time slot">
+            @for (slot of bookingService.availableTimeSlots; track slot.time) {
+              <button 
+                type="button"
+                role="radio"
+                class="time-slot-btn glass-card"
+                [class.active]="bookingService.selectedTimeSlot() === slot.time"
+                [attr.aria-checked]="bookingService.selectedTimeSlot() === slot.time"
+                (click)="selectTimeSlot(slot.time)">
+                <span class="slot-time">{{ slot.time }}</span>
+                <span class="slot-period">{{ slot.period }}</span>
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Step 2 Actions -->
+        <div class="wizard-actions">
+          <button type="button" class="btn-outline-gold" (click)="bookingService.setStep(1)">
+            Previous: Rituals
+          </button>
+          <button 
+            type="button" 
+            class="btn-gold" 
+            [disabled]="!bookingService.selectedDate()"
+            (click)="proceedToStep3()">
+            <span>Next: Guest Dossier</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- ==========================================
+         STEP 3: GUEST DOSSIER & CONTACT DETAILS
+         ========================================== -->
+    @if (bookingService.currentStep() === 3) {
+      <div class="step-pane step-contact animate-fadeIn">
+        <h3 class="step-title">Guest Dossier &amp; Preferences</h3>
+        <p class="step-subtitle">Kindly provide your contact credentials so our concierge can prepare your private suite.</p>
+
+        <form [formGroup]="clientForm" class="client-dossier-form" (ngSubmit)="proceedToStep4()">
+          <div class="form-grid">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="fullName" class="form-label">Full Name *</label>
+              <input 
+                id="fullName" 
+                type="text" 
+                formControlName="fullName"
+                placeholder="e.g. Radhika Sen"
+                class="form-input"
+                [class.invalid]="clientForm.get('fullName')?.invalid && clientForm.get('fullName')?.touched">
+              @if (clientForm.get('fullName')?.invalid && clientForm.get('fullName')?.touched) {
+                <span class="error-hint">Please enter your full name (minimum 3 characters).</span>
+              }
+            </div>
+
+            <!-- Indian Mobile Phone -->
+            <div class="form-group">
+              <label for="phone" class="form-label">Mobile Number *</label>
+              <div class="phone-input-wrap">
+                <span class="phone-prefix">+91</span>
+                <input 
+                  id="phone" 
+                  type="tel" 
+                  formControlName="phone"
+                  placeholder="9876543210"
+                  maxlength="10"
+                  class="form-input with-prefix"
+                  [class.invalid]="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched">
+              </div>
+              @if (clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched) {
+                <span class="error-hint">Enter a valid 10-digit Indian mobile number.</span>
+              }
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address *</label>
+              <input 
+                id="email" 
+                type="email" 
+                formControlName="email"
+                placeholder="radhika@example.com"
+                class="form-input"
+                [class.invalid]="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+              @if (clientForm.get('email')?.invalid && clientForm.get('email')?.touched) {
+                <span class="error-hint">Please enter a valid email address.</span>
+              }
+            </div>
+
+            <!-- Special Requests & Allergies -->
+            <div class="form-group full-width">
+              <label for="notes" class="form-label">Special Requests &amp; Scalp / Skin Considerations (Optional)</label>
+              <textarea 
+                id="notes" 
+                formControlName="notes"
+                rows="3"
+                placeholder="Mention any allergies, past chemical treatments, or beverage preferences for your appointment..."
+                class="form-textarea"></textarea>
+            </div>
+          </div>
+
+          <!-- Demo Disclaimer Agreement -->
+          <div class="demo-disclaimer-box glass-card">
+            <div class="disclaimer-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" class="info-icon" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+            </div>
+            <div class="disclaimer-text">
+              <strong>Portfolio Demonstration Protocol:</strong>
+              <p>This is a portfolio concept demonstration for VELORA Studio. Submitting will generate an instant frontend reservation confirmation with reference code and calendar download. No live payments are processed and no external SMS messages are sent.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 Actions -->
+          <div class="wizard-actions">
+            <button type="button" class="btn-outline-gold" (click)="bookingService.setStep(2)">
+              Previous: Schedule
+            </button>
+            <button 
+              type="submit" 
+              class="btn-gold" 
+              [disabled]="clientForm.invalid">
+              <span>Next: Review &amp; Confirm</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    }
+
+    <!-- ==========================================
+         STEP 4: REVIEW & CONFIRM
+         ========================================== -->
+    @if (bookingService.currentStep() === 4) {
+      <div class="step-pane step-review animate-fadeIn">
+        <h3 class="step-title">Review Your Appointment Dossier</h3>
+        <p class="step-subtitle">Please verify your scheduled rituals, artisan assignment, and contact credentials before final confirmation.</p>
+
+        <!-- Itemized Receipt Card -->
+        <div class="invoice-review-card glass-card">
+          <div class="invoice-header">
+            <div class="invoice-brand">
+              <span class="invoice-atelier-name">VELORA STUDIO</span>
+              <span class="invoice-city">Bhubaneswar &bull; Old Town Sanctuary</span>
+            </div>
+            <div class="invoice-tag">Pre-Appointment Dossier</div>
+          </div>
+
+          <div class="gold-hairline"></div>
+
+          <!-- Schedule Meta -->
+          <div class="invoice-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Reserved Date:</span>
+              <span class="meta-value">{{ bookingService.selectedDate() }}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Time Window:</span>
+              <span class="meta-value">{{ bookingService.selectedTimeSlot() || '11:15 AM' }}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Resident Artisan:</span>
+              <span class="meta-value">
+                {{ bookingService.selectedStylist() ? bookingService.selectedStylist()?.name : 'Atelier Master Specialist' }}
+              </span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Est. Duration:</span>
+              <span class="meta-value">{{ bookingService.formattedDuration() }}</span>
+            </div>
+          </div>
+
+          <div class="gold-hairline"></div>
+
+          <!-- Selected Services Table -->
+          <h4 class="invoice-subhead">Itemized Rituals</h4>
+          <div class="invoice-services-table">
+            @for (s of bookingService.selectedServices(); track s.id) {
+              <div class="table-row">
+                <div class="row-left">
+                  <span class="service-name">{{ s.name }}</span>
+                  <span class="service-duration">{{ s.durationMinutes }} mins</span>
+                </div>
+                <div class="row-right">
+                  <span class="service-price">₹{{ s.price | number }}</span>
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="gold-hairline"></div>
+
+          <!-- Client Credentials -->
+          <h4 class="invoice-subhead">Client Details</h4>
+          <div class="invoice-client-row">
+            <div>
+              <strong>{{ clientForm.value.fullName }}</strong>
+              <span>{{ clientForm.value.email }} &bull; +91 {{ clientForm.value.phone }}</span>
+            </div>
+            @if (clientForm.value.notes) {
+              <p class="client-notes">"{{ clientForm.value.notes }}"</p>
+            }
+          </div>
+
+          <div class="gold-hairline"></div>
+
+          <!-- Financial Total -->
+          <div class="invoice-total-row">
+            <span class="total-label">Estimated Total Investment:</span>
+            <span class="total-amount">₹{{ bookingService.totalPrice() | number }}</span>
+          </div>
+        </div>
+
+        <!-- Step 4 Actions -->
+        <div class="wizard-actions">
+          <button type="button" class="btn-outline-gold" (click)="bookingService.setStep(3)">
+            Previous: Details
+          </button>
+          <button 
+            type="button" 
+            class="btn-gold confirm-booking-btn"
+            [disabled]="isSubmitting()"
+            (click)="confirmBooking()">
+            @if (isSubmitting()) {
+              <span>Generating Reservation...</span>
+            } @else {
+              <span>Confirm &amp; Reserve Appointment</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            }
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- ==========================================
+       DEMO CONFIRMATION MODAL POPUP
+       ========================================== -->
+  @if (showDemoModal() && bookingService.demoConfirmation(); as conf) {
+    <div class="demo-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="demo-modal-dialog glass-card animate-scaleUp">
+        <div class="modal-seal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2.5" class="seal-check" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+
+        <div class="modal-badge-demo">
+          [PORTFOLIO DEMONSTRATION &bull; RESERVATION CONFIRMED]
+        </div>
+
+        <h3 id="modalTitle" class="modal-title">Your Ritual Is Reserved</h3>
+        <p class="modal-ref">
+          Reference Code: <strong>{{ conf.referenceId }}</strong>
+        </p>
+
+        <p class="modal-copy">
+          Thank you, <strong>{{ conf.customer.fullName }}</strong>. We have reserved your private suite for <strong>{{ conf.appointmentDate }}</strong> at <strong>{{ conf.appointmentTime }}</strong>.
+        </p>
+
+        <div class="modal-summary-box">
+          <div class="modal-summary-item">
+            <span class="item-label">Services ({{ conf.services.length }}):</span>
+            <span class="item-value">{{ getServiceNames(conf.services) }}</span>
+          </div>
+          <div class="modal-summary-item">
+            <span class="item-label">Artisan:</span>
+            <span class="item-value">{{ conf.stylist ? conf.stylist.name : 'First Available Specialist' }}</span>
+          </div>
+          <div class="modal-summary-item">
+            <span class="item-label">Est. Duration:</span>
+            <span class="item-value">{{ conf.formattedDuration }}</span>
+          </div>
+          <div class="modal-summary-item">
+            <span class="item-label">Total Investment:</span>
+            <span class="item-value gold">₹{{ conf.totalPrice | number }}</span>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-gold" (click)="downloadCalendar()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cal-icon" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span>Add to Calendar (.ics)</span>
+          </button>
+          <button type="button" class="btn-outline-gold" (click)="closeDemoModal()">
+            <span>Complete &amp; Return</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,70 @@
+<section id="packages" class="section-spacing packages-section" aria-label="VIP Memberships & Curated Packages">
+  <div class="container-velora">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-eyebrow">Atelier Privilege &bull; Memberships</span>
+      <h2 class="section-title">
+        Curated <span class="gold-italic">Ritual Memberships</span>
+      </h2>
+      <p class="section-subtitle">
+        Elevate your beauty ritual into a continuous regimen of restorative luxury. Exclusive tiers offering significant privilege savings and guaranteed reservation access.
+      </p>
+    </div>
+
+    <!-- Pricing Packages Grid -->
+    <div class="packages-grid">
+      @for (pkg of packages; track pkg.id) {
+        <article 
+          class="package-card glass-card"
+          [class.featured]="pkg.isBestValue">
+          @if (pkg.accentBadge) {
+            <div class="package-featured-badge">
+              <span class="sparkle-icon" aria-hidden="true">&#10022;</span>
+              <span>{{ pkg.accentBadge }}</span>
+            </div>
+          }
+
+          <div class="package-header">
+            <h3 class="package-title">{{ pkg.name }}</h3>
+            <p class="package-desc">{{ pkg.description }}</p>
+          </div>
+
+          <!-- Financials -->
+          <div class="package-pricing">
+            <div class="price-row">
+              <span class="currency">₹</span>
+              <span class="amount">{{ pkg.monthlyPrice | number }}</span>
+              <span class="period">/ month</span>
+            </div>
+            <div class="savings-badge">
+              Save up to {{ pkg.savingsPercentage }}% on standard menu
+            </div>
+          </div>
+
+          <div class="gold-hairline"></div>
+
+          <!-- Feature List -->
+          <ul class="features-list">
+            @for (feature of pkg.features; track feature) {
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="check-icon" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>{{ feature }}</span>
+              </li>
+            }
+          </ul>
+
+          <!-- Action Button -->
+          <button 
+            type="button" 
+            [class]="pkg.isBestValue ? 'btn-gold w-full' : 'btn-outline-gold w-full'"
+            (click)="selectPackage(pkg)"
+            [attr.aria-label]="'Join ' + pkg.name + ' membership'">
+            <span>Join {{ pkg.tier }}</span>
+          </button>
+        </article>
+      }
+    </div>
+  </div>
+</section>

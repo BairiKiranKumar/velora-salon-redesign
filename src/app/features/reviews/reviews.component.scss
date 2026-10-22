@@ -1,0 +1,115 @@
+.reviews-section {
+  position: relative;
+  background: var(--velora-noir);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.review-card {
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.stars-row {
+  display: flex;
+  gap: 0.25rem;
+  color: var(--velora-gold);
+  font-size: 1.125rem;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--velora-gold-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  .badge-icon {
+    width: 13px;
+    height: 13px;
+    color: var(--velora-gold);
+  }
+}
+
+.review-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--velora-cream);
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.treatment-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1.5rem;
+  width: fit-content;
+}
+
+.pill-label {
+  color: var(--velora-muted);
+}
+
+.pill-value {
+  color: var(--velora-gold-light);
+  font-weight: 500;
+}
+
+.client-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1.25rem;
+}
+
+.client-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--velora-gold-border);
+}
+
+.client-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.client-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--velora-cream);
+}
+
+.client-role {
+  font-size: 0.75rem;
+  color: var(--velora-muted);
+}

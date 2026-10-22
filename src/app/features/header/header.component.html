@@ -1,0 +1,108 @@
+<header class="velora-header" [class.scrolled]="isScrolled()">
+  <div class="container-velora header-inner">
+    <!-- Brand Monogram & Logo -->
+    <a href="#hero" class="brand-logo" aria-label="VELORA Studio - Home">
+      <div class="brand-mark">
+        <svg viewBox="0 0 44 44" fill="none" class="brand-crest" aria-hidden="true">
+          <circle cx="22" cy="22" r="21" stroke="#D4AF37" stroke-width="1.2" stroke-dasharray="2 3" opacity="0.6"/>
+          <circle cx="22" cy="22" r="17" stroke="#D4AF37" stroke-width="0.8" opacity="0.3"/>
+          <path d="M14 15L22 30L30 15" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17 18L22 27L27 18" stroke="#FDFBF7" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+          <defs>
+            <linearGradient id="goldGrad" x1="14" y1="15" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ECC86E"/>
+              <stop offset="0.5" stop-color="#D4AF37"/>
+              <stop offset="1" stop-color="#B8860B"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">VELORA</span>
+        <span class="brand-descriptor">STUDIO &bull; ATELIER</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-nav" aria-label="Primary Navigation">
+      <ul class="nav-list">
+        <li><a href="#story" class="nav-link">Sanctuary</a></li>
+        <li><a href="#collections" class="nav-link">Collections</a></li>
+        <li><a href="#stylists" class="nav-link">Artisans</a></li>
+        <li><a href="#transformations" class="nav-link">Transformations</a></li>
+        <li><a href="#packages" class="nav-link">Memberships</a></li>
+        <li><a href="#reviews" class="nav-link">Dossier</a></li>
+        <li><a href="#concierge" class="nav-link">Concierge</a></li>
+      </ul>
+    </nav>
+
+    <!-- Header Actions (Direct Phone + Booking Drawer CTA) -->
+    <div class="header-actions">
+      <a href="tel:+919874563210" class="phone-link" aria-label="Call concierge at +91 98745 63210">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="icon-phone" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="phone-text">+91 98745 63210</span>
+      </a>
+
+      <!-- Booking Cart Trigger Button with Signals Counter Badge -->
+      <button 
+        type="button" 
+        class="btn-gold nav-booking-btn" 
+        (click)="openBookingDrawer()"
+        aria-label="Open booking drawer">
+        <span>Reserve Ritual</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-arrow" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        @if (bookingService.serviceCount() > 0) {
+          <span class="service-counter-badge" [attr.aria-label]="bookingService.serviceCount() + ' services selected'">
+            {{ bookingService.serviceCount() }}
+          </span>
+        }
+      </button>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <button 
+        type="button" 
+        class="mobile-toggle-btn" 
+        [class.active]="isMobileMenuOpen()" 
+        (click)="toggleMobileMenu()" 
+        aria-label="Toggle mobile menu"
+        [attr.aria-expanded]="isMobileMenuOpen()">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  @if (isMobileMenuOpen()) {
+    <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+      <div class="container-velora mobile-nav-inner">
+        <ul class="mobile-nav-list">
+          <li><a href="#story" class="mobile-nav-link" (click)="closeMobileMenu()">Sanctuary</a></li>
+          <li><a href="#collections" class="mobile-nav-link" (click)="closeMobileMenu()">Collections</a></li>
+          <li><a href="#stylists" class="mobile-nav-link" (click)="closeMobileMenu()">Artisans</a></li>
+          <li><a href="#transformations" class="mobile-nav-link" (click)="closeMobileMenu()">Transformations</a></li>
+          <li><a href="#packages" class="mobile-nav-link" (click)="closeMobileMenu()">Memberships</a></li>
+          <li><a href="#reviews" class="mobile-nav-link" (click)="closeMobileMenu()">Dossier</a></li>
+          <li><a href="#concierge" class="mobile-nav-link" (click)="closeMobileMenu()">Concierge</a></li>
+        </ul>
+
+        <div class="mobile-drawer-footer">
+          <button type="button" class="btn-gold w-full" (click)="openBookingDrawer()">
+            <span>Reserve Ritual</span>
+            @if (bookingService.serviceCount() > 0) {
+              <span class="service-counter-badge">{{ bookingService.serviceCount() }}</span>
+            }
+          </button>
+          <a href="tel:+919874563210" class="mobile-phone-link">
+            Direct Concierge: +91 98745 63210
+          </a>
+        </div>
+      </div>
+    </div>
+  }
+</header>

@@ -1,0 +1,66 @@
+<section id="story" class="section-spacing story-section" aria-label="About VELORA Sanctuary">
+  <div class="container-velora">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-eyebrow">Sanctuary &bull; Philosophy</span>
+      <h2 class="section-title">
+        Crafting Beauty With <span class="gold-italic">Intention &amp; Artistry</span>
+      </h2>
+      <p class="section-subtitle">
+        VELORA Studio was conceived as an antidote to hurried, commercial salon environments—a peaceful architectural enclave where science, luxury, and artistry converge.
+      </p>
+    </div>
+
+    <!-- 2-Column Editorial Grid -->
+    <div class="story-grid">
+      <!-- Left Column: Visual Showcase Card -->
+      <div class="story-visual-card">
+        <div class="image-wrapper">
+          <img 
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=80" 
+            alt="Artisan master styling hair in tranquil VELORA atelier"
+            class="story-hero-image"
+            loading="lazy">
+          <div class="image-overlay-glow"></div>
+        </div>
+
+        <div class="story-quote-box glass-card">
+          <svg viewBox="0 0 24 24" fill="none" class="quote-icon" aria-hidden="true">
+            <path d="M10 11H6a3 3 0 0 1 3-3V6a5 5 0 0 0-5 5v7h6v-7zm10 0h-4a3 3 0 0 1 3-3V6a5 5 0 0 0-5 5v7h6v-7z" fill="#D4AF37"/>
+          </svg>
+          <p class="quote-text">
+            "We do not alter who you are; we sculpt the most radiant, effortless expression of your natural beauty."
+          </p>
+          <div class="quote-author">
+            <span class="author-name">Aria Vance</span>
+            <span class="author-title">Creative Director, VELORA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Craft Pillars & Manifesto -->
+      <div class="story-narrative">
+        <div class="manifesto-card glass-card">
+          <h3 class="manifesto-title">The Art of Unhurried Care</h3>
+          <p class="manifesto-paragraph">
+            From the moment you step across our threshold in Bhubaneswar, you are greeted with warm herbal infusions and calming soundscapes. We dedicate double the standard salon appointment time to ensure every treatment is performed with surgical precision, immaculate hygiene, and supreme personal care.
+          </p>
+        </div>
+
+        <!-- 4 Pillars Grid -->
+        <div class="pillars-grid">
+          @for (pillar of pillars; track pillar.number) {
+            <div class="pillar-card glass-card">
+              <div class="pillar-header">
+                <span class="pillar-number">{{ pillar.number }}</span>
+                <span class="pillar-accent-line" aria-hidden="true"></span>
+              </div>
+              <h4 class="pillar-title">{{ pillar.title }}</h4>
+              <p class="pillar-description">{{ pillar.description }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

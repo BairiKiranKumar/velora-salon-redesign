@@ -1,0 +1,195 @@
+<section id="collections" class="section-spacing collections-section" aria-label="Curated Service Collections">
+  <div class="container-velora">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-eyebrow">Haute Menu &bull; Curated Services</span>
+      <h2 class="section-title">
+        The Atelier <span class="gold-italic">Collections</span>
+      </h2>
+      <p class="section-subtitle">
+        Curated rituals blending centuries-old European craftsmanship with contemporary clinical dermatology. Explore our signature treatments and reserve your appointment.
+      </p>
+    </div>
+
+    <!-- Filter & Search Controls -->
+    <div class="collections-controls">
+      <!-- Search Bar -->
+      <div class="search-box glass-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input 
+          type="search" 
+          placeholder="Search rituals (e.g., Balayage, 24K Gold, Keratin)..."
+          [ngModel]="searchQuery()"
+          (ngModelChange)="searchQuery.set($event)"
+          aria-label="Search through salon services"
+          class="search-input">
+        @if (searchQuery()) {
+          <button type="button" class="clear-search-btn" (click)="searchQuery.set('')" aria-label="Clear search input">
+            &times;
+          </button>
+        }
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-tabs" role="tablist" aria-label="Filter services by category">
+        @for (category of categories; track category.id) {
+          <button 
+            type="button" 
+            role="tab"
+            class="category-tab"
+            [class.active]="selectedCategory() === category.id"
+            [attr.aria-selected]="selectedCategory() === category.id"
+            (click)="selectCategory(category.id)">
+            <span>{{ category.name }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Results Count Indicator -->
+    <div class="results-meta">
+      <span class="results-count">
+        Showing <strong>{{ filteredServices().length }}</strong> bespoke rituals
+      </span>
+      @if (bookingService.serviceCount() > 0) {
+        <span class="cart-indicator">
+          <span class="pulse-indicator"></span>
+          {{ bookingService.serviceCount() }} selected in your ritual tray
+        </span>
+      }
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-grid">
+      @for (service of filteredServices(); track service.id) {
+        <article 
+          class="service-card glass-card" 
+          [class.selected]="isServiceSelected(service.id)">
+          <!-- Top Badges -->
+          <div class="service-badges">
+            @if (service.isSignature) {
+              <span class="gold-badge">Atelier Signature</span>
+            }
+            @if (service.isPopular) {
+              <span class="popular-badge">Coveted</span>
+            }
+            <span class="duration-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="clock-icon" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              {{ service.durationMinutes }} mins
+            </span>
+          </div>
+
+          <!-- Title & Price -->
+          <div class="service-header">
+            <h3 class="service-name">{{ service.name }}</h3>
+            <div class="service-price">
+              <span class="currency">₹</span>
+              <span class="amount">{{ service.price | number }}</span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="service-description">{{ service.shortDescription }}</p>
+
+          <!-- Expandable Benefits -->
+          @if (service.benefits && service.benefits.length > 0) {
+            <div class="service-benefits">
+              <ul class="benefits-list">
+                @for (benefit of service.benefits; track benefit) {
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="check-icon" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>{{ benefit }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Footer Actions -->
+          <div class="service-actions">
+            <!-- Toggle Selection Button -->
+            <button 
+              type="button" 
+              class="service-select-btn"
+              [class.active]="isServiceSelected(service.id)"
+              (click)="toggleService(service, $event)"
+              [attr.aria-pressed]="isServiceSelected(service.id)">
+              @if (isServiceSelected(service.id)) {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-check-icon" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>Selected for Ritual</span>
+              } @else {
+                <span class="plus-icon">+</span>
+                <span>Select for Ritual</span>
+              }
+            </button>
+
+            <!-- Direct Instant Book Button -->
+            <button 
+              type="button" 
+              class="quick-book-icon-btn" 
+              (click)="openBookingWithService(service, $event)"
+              title="Instant Book this Service"
+              [attr.aria-label]="'Instant Book ' + service.name">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="calendar-icon" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+      } @empty {
+        <div class="empty-state glass-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" class="empty-icon" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <h3 class="empty-title">No matching rituals found</h3>
+          <p class="empty-text">Try adjusting your search criteria or explore our complete collections.</p>
+          <button type="button" class="btn-outline-gold" (click)="searchQuery.set(''); selectedCategory.set('all')">
+            Reset Filters
+          </button>
+        </div>
+      }
+    </div>
+
+    <!-- Floating Selection Summary Tray -->
+    @if (bookingService.serviceCount() > 0) {
+      <aside class="floating-selection-tray glass-card" aria-label="Selected appointment summary">
+        <div class="tray-inner">
+          <div class="tray-summary">
+            <div class="tray-badge">{{ bookingService.serviceCount() }} Rituals Selected</div>
+            <div class="tray-financials">
+              <span class="tray-price">₹{{ bookingService.totalPrice() | number }}</span>
+              <span class="tray-divider">&bull;</span>
+              <span class="tray-duration">{{ bookingService.formattedDuration() }}</span>
+            </div>
+          </div>
+
+          <div class="tray-actions">
+            <button type="button" class="btn-clear-tray" (click)="bookingService.clearServices()" aria-label="Clear selected rituals">
+              Clear All
+            </button>
+            <button type="button" class="btn-gold tray-proceed-btn" (click)="openBookingDrawer()">
+              <span>Choose Date &amp; Time</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+    }
+  </div>
+</section>

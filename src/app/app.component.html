@@ -1,0 +1,68 @@
+<!-- Skip to main content link for WCAG 2.2 AA accessibility -->
+<a href="#main-content" class="skip-to-content sr-only">Skip to main content</a>
+
+<!-- Main Sticky Luxury Navigation -->
+<app-header></app-header>
+
+<!-- Main Page Content Structure -->
+<main id="main-content" class="main-wrapper">
+  <!-- 1. Cinematic Hero Section -->
+  <app-hero></app-hero>
+
+  <!-- 2. Sanctuary & Philosophy Section -->
+  <app-brand-story></app-brand-story>
+
+  <!-- 3. Curated Service Collections Section -->
+  <app-collections></app-collections>
+
+  <!-- 4. Resident Master Artisans Dossier -->
+  <app-stylists></app-stylists>
+
+  <!-- 5. Editorial Transformations Gallery -->
+  <app-transformations></app-transformations>
+
+  <!-- 6. Curated Ritual Memberships & VIP Packages -->
+  <app-packages></app-packages>
+
+  <!-- 7. Verified Client Reviews & Dossier -->
+  <app-reviews></app-reviews>
+
+  <!-- 8. Interactive Inline Booking Suite Section -->
+  <section id="booking" class="section-spacing inline-booking-section" aria-label="Book your appointment">
+    <div class="container-velora">
+      <div class="section-header">
+        <span class="section-eyebrow">Reservation Suite &bull; Booking</span>
+        <h2 class="section-title">
+          Schedule Your <span class="gold-italic">Ritual</span>
+        </h2>
+        <p class="section-subtitle">
+          Select your desired services, master artisan, and preferred appointment window. Our concierge will prepare your private suite.
+        </p>
+      </div>
+
+      <div class="inline-booking-card glass-card">
+        <app-booking-wizard [isDrawerMode]="false"></app-booking-wizard>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Concierge, Old Town Location & FAQ -->
+  <app-concierge></app-concierge>
+</main>
+
+<!-- Master Architectural Footer -->
+<app-footer></app-footer>
+
+<!-- Slide-Over Appointment Booking Drawer (Accessible Modal Overlay) -->
+@if (bookingService.isDrawerOpen()) {
+  <div class="drawer-backdrop" (click)="closeDrawer()" role="presentation">
+    <aside 
+      class="drawer-panel" 
+      (click)="$event.stopPropagation()"
+      role="dialog" 
+      aria-modal="true" 
+      aria-label="Appointment Reservation Drawer">
+      <app-booking-wizard [isDrawerMode]="true"></app-booking-wizard>
+    </aside>
+  </div>
+}
